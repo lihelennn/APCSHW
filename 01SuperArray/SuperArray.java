@@ -87,8 +87,8 @@ public class SuperArray{
 	    return null;
 	}else{
 	    old = data[index];
-	data[index] = e;
-	return old;
+	    data[index] = e;
+	    return old;
 	}
 
     }
