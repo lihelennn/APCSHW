@@ -23,11 +23,12 @@ public class SuperArray{
 
     public String toString(){
 	int place = 0;
-	String answer = "";
+	String answer = "[";
 	while (place < data.length){
-	    answer += ("" + data[place]);
+	    answer += ("" + data[place] + " ");
 	    place += 1;
 	}
+	answer += "]";
 	return answer;
     }
 
@@ -167,12 +168,15 @@ public class SuperArray{
 	System.out.println(test1.getFullLength());
 	Integer x = new Integer(100);
 	test2.add(x);
+	System.out.println(test2.toString());
 	test2.add(new Integer(101));
+	System.out.println(test2.toString());
 	test2.add(102);
 	System.out.println(test2.toString());
 	test2.resize(20);
 	System.out.println(test2.getFullLength());
 	System.out.println(test2.size());
+	System.out.println(test2.toString());
 	//	test2.clear();
 	//	System.out.println(test2.getFullLength());
 	//	System.out.println(test2.size());
@@ -185,7 +189,9 @@ public class SuperArray{
 	System.out.println(test2.get(-1));
 	System.out.println(test2.size());
 	test2.add(11, 99);
+	System.out.println(test2.toString());
 	test2.add(21, 999);
+	System.out.println(test2.toString());
 	test2.add(0, 9);
 	System.out.println(test2.toString());
 	System.out.println(test2.remove(-1));
