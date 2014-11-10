@@ -3,6 +3,20 @@ public class SuperArray{
     Object[]data;
     int currentNumber;
 
+    public void leftJustify(){
+	int place = 0;
+	int place2 = 0;
+	Object[]obj2 = new Object[data.length];
+	while (place < data.length){
+	    if (data[place] != null){
+		obj2[place2] = data[place];
+		place2 += 1;
+	    }
+	    place += 1;
+	}
+	data = obj2;
+    }
+
     public void setCurrentNumber(int length){
 	currentNumber = length;
     }
@@ -53,7 +67,9 @@ public class SuperArray{
 	    data[data.length - 1] = e;
 	}
 	currentNumber += 1;
+        leftJustify();
     }
+
 
 
     public void resize(int newCapacity){
@@ -72,7 +88,7 @@ public class SuperArray{
     }
 
     public Object get(int index){
-	if (index < 0 || index >= data.length){
+	if (index < 0 || index >= size()){
 	    System.out.println("Index is out of range.");
 	    return null;
 	}else{
@@ -82,7 +98,7 @@ public class SuperArray{
 
     public Object set(int index, Object e){
 	Object old = null;
-	if (index < 0 || index >= data.length){
+	if (index < 0 || index >= size()){
 	    System.out.println("Index is out of range.");
 	    return null;
 	}else{
@@ -98,6 +114,7 @@ public class SuperArray{
 	if (index >= data.length){
 	    resize(index + 1);
 	    data[index] = o;
+	    leftJustify();
 	}else{
 	    if (size() == data.length){
 		resize(data.length + 1);
@@ -126,13 +143,14 @@ public class SuperArray{
 		index += 1;
 	    }
 	    data = data2;
+	    leftJustify();
 	}
     }
     
     public Object remove (int index){
 	int place = 0;
 	Object removed = null;
-	if (index < 0 || index >= data.length){
+	if (index < 0 || index >= size()){
 	    System.out.println("Index is out of range.");
 	    return null;
 	}else{
@@ -146,15 +164,21 @@ public class SuperArray{
 		removed = data[index];
 		index += 1;
 	    }
-	    while (place < data2.length){
+	    while (place < size()){
 		data2[place] = data[index];
 		place += 1;
 		index += 1;
 	    }
 	    data = data2;
+	   leftJustify();
 	}
 	return removed;
     }
+
+
+
+
+
 
 
 
@@ -180,8 +204,9 @@ public class SuperArray{
 	//	test2.clear();
 	//	System.out.println(test2.getFullLength());
 	//	System.out.println(test2.size());
-	System.out.println(test2.set(5, 104));
+	System.out.println(test2.set(2, 104));
 	System.out.println(test2.set(30, 999));
+	System.out.println(test2.set(5, 999));
 	System.out.println(test2.set(-1, 999));
 	System.out.println(test2.toString());
 	System.out.println(test2.get(10));
