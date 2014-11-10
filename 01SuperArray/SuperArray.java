@@ -137,7 +137,7 @@ public class SuperArray{
 		data2[index] = o;
 		index += 1;
 	    }
-	    while (index < data.length){
+	    while (index < size()){
 		data2[index] = data[place];
 		place += 1;
 		index += 1;
