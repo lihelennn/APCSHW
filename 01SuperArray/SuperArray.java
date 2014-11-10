@@ -164,7 +164,7 @@ public class SuperArray{
 		removed = data[index];
 		index += 1;
 	    }
-	    while (place < data.length){
+	    while (place < size()){
 		data2[place] = data[index];
 		place += 1;
 		index += 1;
