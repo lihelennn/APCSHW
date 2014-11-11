@@ -89,8 +89,7 @@ public class SuperArray{
 
     public Object get(int index){
 	if (index < 0 || index >= size()){
-	    System.out.println("Index is out of range.");
-	    return null;
+	    throw new IndexOutOfBoundsException();
 	}else{
 	    return "" +  data[index];
 	}
@@ -99,8 +98,7 @@ public class SuperArray{
     public Object set(int index, Object e){
 	Object old = null;
 	if (index < 0 || index >= size()){
-	    System.out.println("Index is out of range.");
-	    return null;
+	    throw new IndexOutOfBoundsException();
 	}else{
 	    old = data[index];
 	    data[index] = e;
@@ -151,8 +149,7 @@ public class SuperArray{
 	int place = 0;
 	Object removed = null;
 	if (index < 0 || index >= size()){
-	    System.out.println("Index is out of range.");
-	    return null;
+	    throw new IndexOutOfBoundsException();	   
 	}else{
 	    place = 0;
 	    Object[]data2 = new Object[data.length - 1];
@@ -170,7 +167,7 @@ public class SuperArray{
 		index += 1;
 	    }
 	    data = data2;
-	   leftJustify();
+	    leftJustify();
 	}
 	return removed;
     }
@@ -183,51 +180,57 @@ public class SuperArray{
 
 
     public static void main(String[]args){
-	SuperArray test1 = new SuperArray();
-	SuperArray test2 = new SuperArray(2);
-	System.out.println(test1.toString());
-	System.out.println(test2.toString());
-	System.out.println(test1.size());
-	test1.resize(15);
-	System.out.println(test1.getFullLength());
-	Integer x = new Integer(100);
-	test2.add(x);
-	System.out.println(test2.toString());
-	test2.add(new Integer(101));
-	System.out.println(test2.toString());
-	test2.add(102);
-	System.out.println(test2.toString());
-	test2.resize(20);
-	System.out.println(test2.getFullLength());
-	System.out.println(test2.size());
-	System.out.println(test2.toString());
-	//	test2.clear();
-	//	System.out.println(test2.getFullLength());
-	//	System.out.println(test2.size());
-	System.out.println(test2.set(2, 104));
-	System.out.println(test2.set(30, 999));
-	System.out.println(test2.set(5, 999));
-	System.out.println(test2.set(-1, 999));
-	System.out.println(test2.toString());
-	System.out.println(test2.get(10));
-	System.out.println(test2.get(2));
-	System.out.println(test2.get(-1));
-	System.out.println(test2.size());
-	test2.add(11, 99);
-	System.out.println(test2.toString());
-	test2.add(21, 999);
-	System.out.println(test2.toString());
-	test2.add(0, 9);
-	System.out.println(test2.toString());
-	System.out.println(test2.remove(-1));
-	System.out.println(test2.remove(0));
-	System.out.println(test2.toString());
-	System.out.println(test2.remove(18));
-	System.out.println(test2.toString());
-	test2.clear();
-	System.out.println(test2.toString());
-	System.out.println(test2.size());
-	System.out.println(test2.getFullLength());
-
+	try{
+	    SuperArray test1 = new SuperArray();
+	    SuperArray test2 = new SuperArray(2);
+	    System.out.println(test1.toString());
+	    System.out.println(test2.toString());
+	    System.out.println(test1.size());
+	    test1.resize(15);
+	    System.out.println(test1.getFullLength());
+	    Integer x = new Integer(100);
+	    test2.add(x);
+	    System.out.println(test2.toString());
+	    test2.add(new Integer(101));
+	    System.out.println(test2.toString());
+	    test2.add(102);
+	    System.out.println(test2.toString());
+	    test2.resize(20);
+	    System.out.println(test2.getFullLength());
+	    System.out.println(test2.size());
+	    System.out.println(test2.toString());
+	    //	test2.clear();
+	    //	System.out.println(test2.getFullLength());
+	    //	System.out.println(test2.size());
+	    System.out.println(test2.set(2, 104));
+	    System.out.println(test2.set(30, 999));
+	    System.out.println(test2.set(5, 999));
+	    System.out.println(test2.set(-1, 999));
+	    System.out.println(test2.toString());
+	    System.out.println(test2.get(10));
+	    System.out.println(test2.get(2));
+	    System.out.println(test2.get(-1));
+	    System.out.println(test2.size());
+	    test2.add(11, 99);
+	    System.out.println(test2.toString());
+	    test2.add(21, 999);
+	    System.out.println(test2.toString());
+	    test2.add(0, 9);
+	    System.out.println(test2.toString());
+	    System.out.println(test2.remove(-1));
+	    System.out.println(test2.remove(0));
+	    System.out.println(test2.toString());
+	    System.out.println(test2.remove(18));
+	    
+	    System.out.println(test2.toString());
+	    test2.clear();
+	    System.out.println(test2.toString());
+	    System.out.println(test2.size());
+	    System.out.println(test2.getFullLength());
+	}
+	catch(IndexOutOfBoundsException e){
+	    System.out.println("hahaha your index is out of bounds.");
+	}
     }
 }
+
