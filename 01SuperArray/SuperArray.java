@@ -59,19 +59,6 @@ public class SuperArray{
 	return sizee;
     }
 
-    public void add(Object e){
-	if (currentNumber < data.length){
-	    data[currentNumber] = e;
-	}else{
-	    resize(data.length + 1);
-	    data[data.length - 1] = e;
-	}
-	currentNumber += 1;
-        leftJustify();
-    }
-
-
-
     public void resize(int newCapacity){
 	Object[]data2 = new Object[newCapacity];
 	int place = 0;
@@ -81,6 +68,20 @@ public class SuperArray{
 	}
 	data = data2;
     }
+
+    public void add(Object e){
+	if (currentNumber < data.length){
+	    data[currentNumber] = e;
+	    currentNumber += 1;
+	}else{
+	    resize(data.length * 2);
+	    data[currentNumber] = e;
+	    currentNumber += 1;
+	}
+	currentNumber += 1;
+        leftJustify();
+    }
+
 
     public void clear(){
 	Object[]data2 = new Object[data.length];
@@ -110,21 +111,21 @@ public class SuperArray{
     public void add(int index, Object o){
 	int place = 0;
 	if (index >= data.length){
-	    resize(index + 1);
+	    resize((index + 1) * 2);
 	    data[index] = o;
 	    leftJustify();
 	}else{
-	    if (size() == data.length){
-		resize(data.length + 1);
-	    }
-	    while (place < data.length){
-		if (data[place] == null){
-		    place += 1;
-		}else{
-		    place = data.length;
-		    resize(data.length + 1);
-		}
-	    }
+	    // if (size() == data.length){
+	    //	resize(data.length * 2);
+	    //	}
+	    //  while (place < data.length){
+		//	if (data[place] == null){
+	    //	    place += 1;
+	    //	}else{
+	    //	    place = data.length;
+	    //	    resize(data.length + 1);
+	    //	}
+	    // }
 	    place = 0;
 	    Object[]data2 = new Object[data.length];
 	    while (place < index){
@@ -135,7 +136,7 @@ public class SuperArray{
 		data2[index] = o;
 		index += 1;
 	    }
-	    while (index < size()){
+	    while (place < size()){
 		data2[index] = data[place];
 		place += 1;
 		index += 1;
@@ -143,16 +144,22 @@ public class SuperArray{
 	    data = data2;
 	    leftJustify();
 	}
+	currentNumber += 1;
     }
     
     public Object remove (int index){
 	int place = 0;
 	Object removed = null;
+	Object[]data2 = null;
 	if (index < 0 || index >= size()){
 	    throw new IndexOutOfBoundsException();	   
 	}else{
 	    place = 0;
-	    Object[]data2 = new Object[data.length - 1];
+	    if (size() <= data.length / 4){
+                data2 = new Object[data.length / 2];
+	    }else{
+		data2 = new Object[data.length];
+	    }
 	    while (place < index){
 		data2[place] = data[place];
 		place += 1;
@@ -161,7 +168,7 @@ public class SuperArray{
 		removed = data[index];
 		index += 1;
 	    }
-	    while (place < size()){
+	    while (index < size()){
 		data2[place] = data[index];
 		place += 1;
 		index += 1;
@@ -169,6 +176,7 @@ public class SuperArray{
 	    data = data2;
 	    leftJustify();
 	}
+	currentNumber -= 1;
 	return removed;
     }
 
@@ -195,6 +203,8 @@ public class SuperArray{
 	    System.out.println(test2.toString());
 	    test2.add(102);
 	    System.out.println(test2.toString());
+	    test2.add(103);
+	    System.out.println(test2.toString());
 	    test2.resize(20);
 	    System.out.println(test2.getFullLength());
 	    System.out.println(test2.size());
@@ -203,6 +213,11 @@ public class SuperArray{
 	    //	System.out.println(test2.getFullLength());
 	    //	System.out.println(test2.size());
 	    System.out.println(test2.set(2, 104));
+	    System.out.println(test2.toString());
+	    test2.remove(0);
+	    System.out.println(test2.toString());
+	    test2.add(0, 100);
+	    System.out.println(test2.toString());
 	    System.out.println(test2.set(30, 999));
 	    System.out.println(test2.set(5, 999));
 	    System.out.println(test2.set(-1, 999));
@@ -221,7 +236,6 @@ public class SuperArray{
 	    System.out.println(test2.remove(0));
 	    System.out.println(test2.toString());
 	    System.out.println(test2.remove(18));
-	    
 	    System.out.println(test2.toString());
 	    test2.clear();
 	    System.out.println(test2.toString());
