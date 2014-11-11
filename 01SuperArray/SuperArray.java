@@ -214,6 +214,7 @@ public class SuperArray{
 	    //	System.out.println(test2.size());
 	    System.out.println(test2.set(2, 104));
 	    System.out.println(test2.toString());
+	    System.out.println(test2.get(2));
 	    test2.remove(0);
 	    System.out.println(test2.toString());
 	    test2.add(0, 100);
