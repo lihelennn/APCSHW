@@ -70,13 +70,13 @@ public class WordGrid{
      *@return true when the word is added successfully. When the word doesn't fit,
      *or there are overlapping letters that do not match, then false is returned.
      */
-    public boolean addWordHorizontal(String word,int row, int col){
+    public boolean addWordHorizontal(String word, int row, int col){
 	int place = 0;
 	int origCol = col;
 	if (col + word.length() - 1 > cols){
 	    return false;
 	}else{
-	    while (place < word.length()){
+	    while (place < word.length() && col < cols){
 		System.out.println(word.charAt(place));
 		if (data[row][col] == word.charAt(place)){
 		    place = 0;
@@ -90,8 +90,8 @@ public class WordGrid{
 		place += 1;
 		col += 1;
 	    }
+	    return false;
 	}
-	return false;
     }
 
     //vertical + diagonal should be implemented as well.
@@ -100,12 +100,13 @@ public class WordGrid{
 
 
     public static void main (String[]args){
-	WordGrid test1 = new WordGrid(3,4);
+	WordGrid test1 = new WordGrid(6, 6);
 	// this works	test1.clear();
 	System.out.println(test1);
-	System.out.println(test1.addWordHorizontal("happy", 1, 1)); // expect false: word too long
-	System.out.println(test1.addWordHorizontal("hay", 1, 1)); // expect true with word in grid
+	System.out.println(test1.addWordHorizontal("happy", 5, 5)); // expect false: word too long
+	System.out.println(test1.addWordHorizontal("hay", 0, 1)); // expect true with word in grid
 	System.out.println(test1.addWordHorizontal("meet", 1, 1)); // expect false; letters not in grid
+	System.out.println(test1.addWordHorizontal("hater", 2, 1));
 	System.out.println(test1);
     }
 }
