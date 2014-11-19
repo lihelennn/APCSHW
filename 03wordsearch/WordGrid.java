@@ -16,7 +16,7 @@ public class WordGrid{
 	this.cols = cols;
 	while (placeR < rows){
 	    while (placeC < cols){
-		data[placeR][placeC] = ' ';
+		data[placeR][placeC] = 'a';
 		placeC += 1;
 	    }
 	    placeR += 1;
@@ -106,7 +106,7 @@ public class WordGrid{
 	System.out.println(test1.addWordHorizontal("happy", 5, 5)); // expect false: word too long
 	System.out.println(test1.addWordHorizontal("hay", 0, 1)); // expect true with word in grid
 	System.out.println(test1.addWordHorizontal("meet", 1, 1)); // expect false; letters not in grid
-	System.out.println(test1.addWordHorizontal("hater", 2, 0)); // expect true;
+	System.out.println(test1.addWordHorizontal("hater", 2, 0)); // expect true with word in grid
 	System.out.println(test1);
     }
 }
