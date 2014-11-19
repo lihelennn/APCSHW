@@ -16,7 +16,7 @@ public class WordGrid{
 	this.cols = cols;
 	while (placeR < rows){
 	    while (placeC < cols){
-		data[placeR][placeC] = ' ';
+		data[placeR][placeC] = 'a';
 		placeC += 1;
 	    }
 	    placeR += 1;
@@ -72,39 +72,40 @@ public class WordGrid{
      */
     public boolean addWordHorizontal(String word,int row, int col){
 	int place = 0;
-	origCol = col;
-	if (col + word.length() > cols){
+	int origCol = col;
+	if (col + word.length() - 1 > cols){
 	    return false;
 	}else{
 	    while (place < word.length()){
+		System.out.println(word.charAt(place));
 		if (data[row][col] == word.charAt(place)){
-		    return true;
 		    place = 0;
 		    while (place < word.length()){
 			data[row][origCol] = word.charAt(place);
 			place += 1;
 			origCol += 1;
 		    }
+		    return true;
 		}
 		place += 1;
 		col += 1;
 	    }
 	}
+	return false;
     }
-       
 
-
-
-	    }
-
-	    //vertical + diagonal should be implemented as well.
+    //vertical + diagonal should be implemented as well.
 
 
 
 
-	    public static void main (String[]args){
-		WordGrid test1 = new WordGrid(3,4);
-		test1.clear();
-		System.out.println(test1);
-	    }
-	}
+    public static void main (String[]args){
+	WordGrid test1 = new WordGrid(3,4);
+	// this works	test1.clear();
+	System.out.println(test1);
+	System.out.println(test1.addWordHorizontal("happy", 1, 1)); // expect false: word too long
+	System.out.println(test1.addWordHorizontal("hay", 1, 1)); // expect true with word in grid
+	System.out.println(test1.addWordHorizontal("meet", 1, 1)); // expect false; letters not in grid
+	System.out.println(test1);
+    }
+}
