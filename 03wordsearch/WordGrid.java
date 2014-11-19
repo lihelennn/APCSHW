@@ -16,7 +16,7 @@ public class WordGrid{
 	this.cols = cols;
 	while (placeR < rows){
 	    while (placeC < cols){
-		data[placeR][placeC] = 'a';
+		data[placeR][placeC] = ' ';
 		placeC += 1;
 	    }
 	    placeR += 1;
