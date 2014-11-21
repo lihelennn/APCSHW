@@ -74,6 +74,7 @@ public class WordGrid{
 	    while (place < word.length() && col < cols){
 		System.out.println(word.charAt(place));
 		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
+		    place = 0;
 		    while (origCol < cols && place < word.length()){
 			if (data[row][origCol] == word.charAt(place) || data[row][origCol] == ' '){
 			    place += 1;
@@ -115,6 +116,7 @@ public class WordGrid{
 	    while (place < word.length() && row < rows){
 		System.out.println(word.charAt(place));
 		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
+		    place = 0;
 		    while (origRow < rows && place < word.length()){
 			if (data[origRow][col] == word.charAt(place) || data[origRow][col] == ' '){
 			    place += 1;
@@ -155,13 +157,15 @@ public class WordGrid{
 	WordGrid test1 = new WordGrid(10, 10);
 	// this works test1.clear();
 	System.out.println(test1);
-	System.out.println(test1.addWordHorizontal("happy", 5, 5)); // expect false: word too long
-	System.out.println(test1.addWordHorizontal("hay", 0, 1)); // expect true with word in grid
-	System.out.println(test1.addWordHorizontal("meet", 1, 1)); // expect false; letters not in grid
-	System.out.println(test1.addWordHorizontal("hater", 2, 0)); // expect true with word in grid
-	System.out.println(test1.addWordVertical("apcs", 1, 2)); // expect true;
-	System.out.println(test1.addWordVertical("hello", 0, 0)); // expect false; not present
-	System.out.println(test1.addWordVertical("helloooo", 3, 4)); // expect false; too long
+	System.out.println(test1.addWordHorizontal("happy", 5, 5)); 
+	System.out.println(test1.addWordHorizontal("hay", 0, 1)); 
+	System.out.println(test1.addWordHorizontal("meet", 1, 1)); 
+	System.out.println(test1.addWordHorizontal("hater", 2, 0)); 
+	System.out.println(test1.addWordVertical("apcs", 1, 2)); 
+	System.out.println(test1.addWordVertical("hello", 0, 0)); 
+	System.out.println(test1.addWordVertical("helloooo", 3, 4)); 
+	System.out.println(test1.addWordHorizontal("woof", 3, 1)); // expect false; cannot fit;
+	System.out.println(test1.addWordHorizontal("woof", 3, 0)); // expect true; should fit
 	System.out.println(test1);
     }
 }
