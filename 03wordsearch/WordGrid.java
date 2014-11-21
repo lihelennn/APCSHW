@@ -100,12 +100,6 @@ public class WordGrid{
 	}
     }
     
-
-    //vertical + diagonal should be implemented as well.
-
-
-
-
     public boolean addWordVertical(String word, int row, int col){
 	int place = 0;
 	int origRow = row;
@@ -143,7 +137,96 @@ public class WordGrid{
     }
     
 
+    //vertical + diagonal should be implemented as well.
 
+
+
+
+    public boolean addWordDiagonal(String word, int row, int col){
+	int place = 0;
+	int origDiaR = row;
+	int origDiaR2 = row;
+	int origDiaC = col;
+	int origDiaC2 = col;
+	if (row + word.length() - 1 > rows || col + word.length() - 1 > cols){
+	    return false;
+	}else{
+	    while (place < word.length() && row < rows && col < cols){
+		System.out.println(word.charAt(place));
+		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
+		    place = 0;
+		    while (origDiaC < cols && origDiaR < rows && place < word.length()){
+			if (data[origDiaR][origDiaC] == word.charAt(place) || data[origDiaR][origDiaC] == ' '){
+			    place += 1;
+			    origDiaR += 1;
+			    origDiaC += 1;
+			}else{
+			    return false;
+			}
+		    }
+		    place = 0 ;
+		    origDiaR = origDiaR2;
+		    origDiaC = origDiaC2;
+		    while (origDiaC < cols && origDiaR < rows && place < word.length()){
+			data[origDiaR][origDiaC] = word.charAt(place);
+			place += 1;
+			origDiaR += 1;
+			origDiaC += 1;
+		    }
+		    return true;
+		}
+		
+		place += 1;
+		row += 1;
+		col += 1;
+	    }
+	    return false;
+	}
+    }
+    
+
+    public boolean addWordDiagonal2(String word, int row, int col){
+	int place = 0;
+	int origDiaR = row;
+	int origDiaR2 = row;
+	int origDiaC = col;
+	int origDiaC2 = col;
+	if (row + word.length() - 1 > rows || col - word.length() < 0){
+	    return false;
+	}else{
+	    while (place < word.length() && row < rows && col >= 0){
+		System.out.println(word.charAt(place));
+		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
+		    place = 0;
+		    while (origDiaC >= 0 && origDiaR < rows && place < word.length()){
+			if (data[origDiaR][origDiaC] == word.charAt(place) || data[origDiaR][origDiaC] == ' '){
+			    place += 1;
+			    origDiaR += 1;
+			    origDiaC -= 1;
+			}else{
+			    return false;
+			}
+		    }
+		    place = 0 ;
+		    origDiaR = origDiaR2;
+		    origDiaC = origDiaC2;
+		    while (origDiaC >= 0 && origDiaR < rows && place < word.length()){
+			data[origDiaR][origDiaC] = word.charAt(place);
+			place += 1;
+			origDiaR += 1;
+			origDiaC -= 1;
+		    }
+		    return true;
+		}
+		
+		place += 1;
+		row += 1;
+		col -= 1;
+	    }
+	    return false;
+	}
+    }
+    
 
 
 
@@ -157,15 +240,17 @@ public class WordGrid{
 	WordGrid test1 = new WordGrid(10, 10);
 	// this works test1.clear();
 	System.out.println(test1);
-	System.out.println(test1.addWordHorizontal("happy", 5, 5)); 
-	System.out.println(test1.addWordHorizontal("hay", 0, 1)); 
-	System.out.println(test1.addWordHorizontal("meet", 1, 1)); 
-	System.out.println(test1.addWordHorizontal("hater", 2, 0)); 
-	System.out.println(test1.addWordVertical("apcs", 1, 2)); 
-	System.out.println(test1.addWordVertical("hello", 0, 0)); 
-	System.out.println(test1.addWordVertical("helloooo", 3, 4)); 
-	System.out.println(test1.addWordHorizontal("woof", 3, 1)); // expect false; cannot fit;
-	System.out.println(test1.addWordHorizontal("woof", 3, 0)); // expect true; should fit
+	//	System.out.println(test1.addWordHorizontal("happy", 5, 5)); 
+	//	System.out.println(test1.addWordHorizontal("hay", 0, 1)); 
+	//	System.out.println(test1.addWordHorizontal("meet", 1, 1)); 
+		System.out.println(test1.addWordHorizontal("hater", 2, 1)); 
+	//	System.out.println(test1.addWordVertical("apcs", 1, 2)); 
+	//	System.out.println(test1.addWordVertical("hello", 2, 4)); 
+	//	System.out.println(test1.addWordVertical("helloooo", 3, 4)); 
+	//	System.out.println(test1.addWordHorizontal("woof", 3, 1)); // expect false; cannot fit;
+	//	System.out.println(test1.addWordHorizontal("woof", 3, 0)); // expect true; should fit
+	//	System.out.println(test1.addWordDiagonal("math", 1, 1));
+	System.out.println(test1.addWordDiagonal2("helen", 1, 5)); 
 	System.out.println(test1);
     }
 }
