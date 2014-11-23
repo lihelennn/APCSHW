@@ -1,16 +1,16 @@
+import java.util.*;
+import java.io.*;
+import java.nio.*;
+
 public class ReadFile{
 
-    public static void scan(String file){
-
-	Scanner sc = new Scanner(new File(file)).useDelimiter("\\s");
-	while(sc.hasNext()){
-	    System.out.println(sc.next());
+    public static void main (String[]args) throws FileNotFoundException{
+	File text = new File("words.txt");
+	Scanner sc = new Scanner(text).useDelimiter(" ");
+	while (sc.hasNextLine()){
+	    String line = sc.nextLine();
+	    System.out.println(line);
 	}
+
     }
-
-
-    public static void main (String[]args){
-	scan("words.txt");
-    }
-
 }
