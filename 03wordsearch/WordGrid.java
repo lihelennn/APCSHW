@@ -2,6 +2,7 @@ public class WordGrid{
     private char[][]data;
     private int rows;
     private int cols;
+   
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
      *@param row is the starting height of the WordGrid
@@ -54,6 +55,26 @@ public class WordGrid{
 	}
 	return str;
     }
+
+
+  
+
+    private static String reverseString(String str){
+	int leng = str.length();
+	int place = leng - 1;
+	while (place >= 0){
+	    str += str.charAt(place);
+	    place -= 1;
+	}
+	str = str.substring(leng, str.length());
+	return str;
+    }
+	   
+		   
+	   
+	  
+
+
     /**Attempts to add a given word to the specified position of the WordGrid.
      *The word is added from left to right, must fit on the WordGrid, and must
      *have a corresponding letter to match any letters that it overlaps.
@@ -228,29 +249,45 @@ public class WordGrid{
     }
     
 
+    public boolean addWordHorizontal2(String word, int row, int col){
+	word = reverseString(word);
+	return addWordHorizontal(word, row, col);
+    }
 
+    public boolean addWordVertical2(String word, int row, int col){
+	word = reverseString(word);
+	return addWordVertical(word, row, col);
+    }
 
+    public boolean addWordDiagonal3(String word, int row, int col){
+	word = reverseString(word);
+	return addWordDiagonal(word, row, col);
+    }
+
+    public boolean addWordDiagonal4(String word, int row, int col){
+	word = reverseString(word);
+	return addWordDiagonal2(word, row, col);
+    }
 
 
 
     public static void main (String[]args){
 
 
-
 	WordGrid test1 = new WordGrid(10, 10);
 	// this works test1.clear();
 	System.out.println(test1);
-	//	System.out.println(test1.addWordHorizontal("happy", 5, 5)); 
+		System.out.println(test1.addWordHorizontal2("happy", 5, 5)); 
 	//	System.out.println(test1.addWordHorizontal("hay", 0, 1)); 
 	//	System.out.println(test1.addWordHorizontal("meet", 1, 1)); 
-		System.out.println(test1.addWordHorizontal("hater", 2, 1)); 
-	//	System.out.println(test1.addWordVertical("apcs", 1, 2)); 
+	//	System.out.println(test1.addWordHorizontal("hater", 2, 1)); 
+		System.out.println(test1.addWordVertical2("apcs", 1, 2)); 
 	//	System.out.println(test1.addWordVertical("hello", 2, 4)); 
 	//	System.out.println(test1.addWordVertical("helloooo", 3, 4)); 
 	//	System.out.println(test1.addWordHorizontal("woof", 3, 1)); // expect false; cannot fit;
 	//	System.out.println(test1.addWordHorizontal("woof", 3, 0)); // expect true; should fit
 	//	System.out.println(test1.addWordDiagonal("math", 1, 1));
-	System.out.println(test1.addWordDiagonal2("helen", 1, 5)); 
+	//	System.out.println(test1.addWordDiagonal3("helen", 1, 5)); 
 	System.out.println(test1);
     }
 }
