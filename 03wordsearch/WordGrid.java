@@ -106,7 +106,6 @@ public class WordGrid{
 	    return false;
 	}else{
 	    while (place < word.length() && col < cols){
-		System.out.println(word.charAt(place));
 		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
 		    place = 0;
 		    while (origCol < cols && place < word.length()){
@@ -142,7 +141,6 @@ public class WordGrid{
 	    return false;
 	}else{
 	    while (place < word.length() && row < rows){
-		System.out.println(word.charAt(place));
 		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
 		    place = 0;
 		    while (origRow < rows && place < word.length()){
@@ -186,7 +184,6 @@ public class WordGrid{
 	    return false;
 	}else{
 	    while (place < word.length() && row < rows && col < cols){
-		System.out.println(word.charAt(place));
 		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
 		    place = 0;
 		    while (origDiaC < cols && origDiaR < rows && place < word.length()){
@@ -229,7 +226,6 @@ public class WordGrid{
 	    return false;
 	}else{
 	    while (place < word.length() && row < rows && col >= 0){
-		System.out.println(word.charAt(place));
 		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
 		    place = 0;
 		    while (origDiaC >= 0 && origDiaR < rows && place < word.length()){
@@ -285,22 +281,26 @@ public class WordGrid{
 
 
     public static void main (String[]args) throws FileNotFoundException{
-	WordGrid test1 = new WordGrid(20, 20);
+	WordGrid test1 = new WordGrid(15, 15);
+	ArrayList<String> wordList = new ArrayList<String>();
 	Random r1 = new Random();
 	Random c1 = new Random();
 	Random d1 = new Random();
 	int count = 0;
-
 	File text = new File("C:/Users/Helen/Documents/GitHub/APCSHW/APCSHW/03wordsearch/words.txt");
 	Scanner sc = new Scanner(text);
 	while (sc.hasNextLine()){
+	    wordList.add(sc.nextLine());
+	}
+	int place = 0;
+	while (place < wordList.size()){
 	    boolean goOn = false;
-	    String line = sc.nextLine();
+	    String line = wordList.get(place);	
 	    count = 0;
 	    int row = r1.nextInt(test1.getRows());
 	    int col = c1.nextInt(test1.getCols());
 	    int  dir = d1.nextInt(8);
-	    while (goOn == false && count < 50){
+	    while (goOn == false && count < 100){
 		if (dir == 0){
 		    goOn = test1.addWordHorizontal(line, row, col);
 		}else{
@@ -332,6 +332,7 @@ public class WordGrid{
 		}
 		count += 1;
 	    }
+	    place += 1;
 	}   
 
 
