@@ -5,6 +5,8 @@ public class WordGrid{
     private char[][]data;
     private int rows;
     private int cols;
+    public ArrayList<String> wordsPuzzle = new ArrayList<String>();
+
    
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
@@ -19,13 +21,14 @@ public class WordGrid{
 	this.cols = cols;
 	while (placeR < rows){
 	    while (placeC < cols){
-		data[placeR][placeC] = ' ';
+		data[placeR][placeC] = '_';
 		placeC += 1;
 	    }
 	    placeR += 1;
 	    placeC = 0;
 	}
     }
+
 
     private int getRows(){
 	return rows;
@@ -94,10 +97,10 @@ public class WordGrid{
 	int origCol = col;
 	if (checkWord(word, row, col, dy, dx) == true){
 	    while (place < word.length()){
-		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
+		if (data[row][col] == word.charAt(place) || data[row][col] == '_'){
 		    place = 0;
 		    while (col < cols && row < rows && place < word.length()){
-			if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
+			if (data[row][col] == word.charAt(place) || data[row][col] == '_'){
 			    place += 1;
 			    row += dy;
 			    col += dx;
@@ -114,6 +117,7 @@ public class WordGrid{
 			row += dy;
 			col += dx;
 		    }
+		    wordsPuzzle.add(word);
 		    return true;
 		}
 		place += 1;
@@ -122,12 +126,84 @@ public class WordGrid{
 	return false;
     }
     
+    public void fillUp(){
+	int placeRow = 0;
+	int placeCol = 0;
+	Random rand = new Random();
+	while (placeRow < rows){
+	    while (placeCol < cols){
+		int chara = rand.nextInt(26);
+		if (data[placeRow][placeCol] == '_' || data[placeRow][placeCol] == ' '){
+		    data[placeRow][placeCol] = (char)('a' + chara);
+		}
+		placeCol += 1;
+	    }
+	    placeCol = 0;
+	    placeRow += 1;
+	}
+    }
 
 
 
 
 
 
+    public void loadWordsFromFiles(String fileName, boolean fillRandomLetters) throws FileNotFoundException{
+	try{
+	    ArrayList<String> wordList = new ArrayList<String>();
+	    Random r1 = new Random();
+	    Random c1 = new Random();
+	    Random d1 = new Random();
+	    Random dy2 = new Random();
+	    Random dx2 = new Random();
+	    int count = 0;
+	    File text = new File(fileName);
+	    Scanner sc = new Scanner(text);
+	    while (sc.hasNextLine()){
+		wordList.add(sc.nextLine());
+	    }
+	    int place = 0;
+	    while (place < wordList.size()){
+		boolean goOn = false;
+		String line = wordList.get(place);	
+		count = 0;
+		while (goOn == false && count < 5){
+		    if (addWord(line , r1.nextInt(getRows()) , c1.nextInt(getCols()) , dy2.nextInt(3) - 1 , dx2.nextInt(3) - 1) == false){
+			count += 1;
+		    }else{
+			goOn = true;
+		    }
+		}
+		count = 0;
+		place += 1;
+	    }
+	    if (fillRandomLetters == true){
+		fillUp();
+	    }
+	}
+	catch(FileNotFoundException e){
+	    System.out.println("File cannot be found...");
+	}
+    }
+
+    public String wordsInPuzzle(){
+	int place = 0;
+	String wordss = "";
+	int countPerRow = 0;
+	while (place < wordsPuzzle.size()){
+	    while (place < wordsPuzzle.size() && countPerRow < 3){
+		wordss += wordsPuzzle.get(place) + "\t\t";
+		place += 1;
+		countPerRow += 1;
+	    }
+	    countPerRow = 0;
+	    wordss += "\n";
+	}
+	return wordss;
+    }
+
+
+	
 
 
 
@@ -143,36 +219,11 @@ public class WordGrid{
 	  
 
 
-    public static void main (String[]args) throws FileNotFoundException{
-	WordGrid test1 = new WordGrid(15, 15);
-	ArrayList<String> wordList = new ArrayList<String>();
-	Random r1 = new Random();
-	Random c1 = new Random();
-	Random d1 = new Random();
-	Random dy2 = new Random();
-	Random dx2 = new Random();
-	int count = 0;
-	File text = new File("C:/Users/Helen/Documents/GitHub/APCSHW/APCSHW/03wordsearch/words.txt");
-	Scanner sc = new Scanner(text);
-	while (sc.hasNextLine()){
-	    wordList.add(sc.nextLine());
-	}
-	int place = 0;
-	while (place < wordList.size()){
-	    boolean goOn = false;
-	    String line = wordList.get(place);	
-	    count = 0;
-	    while (goOn == false && count < 5){
-		if (test1.addWord(line , r1.nextInt(test1.getRows()) , c1.nextInt(test1.getCols()) , dy2.nextInt(3) - 1 , dx2.nextInt(3) - 1) == false){
-		    count += 1;
-		}else{
-		    goOn = true;
-		}
-       	    }
-	    count = 0;
-	    place += 1;
-	}	   
-        System.out.println(test1);
+	public static void main (String[]args) throws FileNotFoundException{
+	    WordGrid test1 = new WordGrid(15, 15);
+	    test1.loadWordsFromFiles("words.txt", true);
+	    System.out.println(test1.wordsInPuzzle());
+	    System.out.println(test1);
     
+	}
     }
-}
