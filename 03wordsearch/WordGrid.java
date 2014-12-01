@@ -278,6 +278,74 @@ public class WordGrid{
 	return addWordDiagonal2(word, row, col);
     }
 
+    public boolean checkWord(String word, int row, int col, int dy, int dx){
+	if (dy == 0 && dx == 0){
+	    return false;
+	}else{
+	    if (row < 0 || col < 0){
+		return false;
+	    }else{
+		if (col + (dx * word.length()) < 0 || col + (dx * word.length()) >= cols || row + (dy * word.length()) < 0 || row + (dy * word.length()) >= rows){
+		    return false;
+		}else{
+		    return true;
+		}
+	    }
+	}
+    }
+
+    public boolean addWord(String word, int row, int col, int dy, int dx){
+	int place = 0;
+	int origRow = row;
+	int origCol = col;
+	if (checkWord(word, row, col, dy, dx) == true){
+	    while (place < word.length()){
+		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
+		    place = 0;
+		    while (col < cols && row < rows && place < word.length()){
+			if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
+			    place += 1;
+			    row += dy;
+			    col += dx;
+			}else{
+			    return false;
+			}
+		    }
+		    place = 0 ;
+		    row = origRow;
+		    col = origCol;
+		    while (col < cols && row < rows && place < word.length()){
+			data[row][col] = word.charAt(place);
+			place += 1;
+			row += dy;
+			col += dx;
+		    }
+		    return true;
+		}
+       	    }
+	}
+	return false;
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  
 
 
     public static void main (String[]args) throws FileNotFoundException{
@@ -286,6 +354,8 @@ public class WordGrid{
 	Random r1 = new Random();
 	Random c1 = new Random();
 	Random d1 = new Random();
+	Random dy2 = new Random();
+	Random dx2 = new Random();
 	int count = 0;
 	File text = new File("C:/Users/Helen/Documents/GitHub/APCSHW/APCSHW/03wordsearch/words.txt");
 	Scanner sc = new Scanner(text);
@@ -297,43 +367,15 @@ public class WordGrid{
 	    boolean goOn = false;
 	    String line = wordList.get(place);	
 	    count = 0;
-	    int row = r1.nextInt(test1.getRows());
-	    int col = c1.nextInt(test1.getCols());
-	    int  dir = d1.nextInt(8);
-	    while (goOn == false && count < 100){
-		if (dir == 0){
-		    goOn = test1.addWordHorizontal(line, row, col);
-		}else{
-		    if (dir == 1){
-			goOn = test1.addWordHorizontal2(line, row, col);
-		    }else{
-			if (dir == 2){
-			    goOn = test1.addWordVertical(line, row, col);
-			}else{
-			    if (dir == 3){
-				goOn = test1.addWordVertical2(line, row, col);
-			    }else{
-				if (dir == 4){
-				    goOn = test1.addWordDiagonal(line, row, col);
-				}else{
-				    if (dir == 5){
-					goOn = test1.addWordDiagonal2(line, row, col);
-				    }else{
-					if (dir == 6){
-					    goOn = test1.addWordDiagonal3(line, row, col);
-					}else{
-					    goOn = test1.addWordDiagonal4(line, row, col);
-					}
-				    }
-				}
-			    }
-			}
-		    }
-		}
+	    while (goOn == false && count < 20){
+		test1.addWord(wordList.get(place) , r1.nextInt(test1.getRows()) , c1.nextInt(test1.getCols()) , dy2.nextInt(3) - 1 , dx2.nextInt(3) - 1);
 		count += 1;
 	    }
+	    count = 0;
 	    place += 1;
-	}   
+	}
+	   
+	
 
 
 	
@@ -341,16 +383,6 @@ public class WordGrid{
 
 
 	System.out.println(test1);
-	//	System.out.println(test1.addWordHorizontal2("happy", 5, 5)); 
-	//	System.out.println(test1.addWordHorizontal("hay", 0, 1)); 
-	//	System.out.println(test1.addWordHorizontal("meet", 1, 1)); 
-	//	System.out.println(test1.addWordHorizontal("hater", 2, 1)); 
-	//	System.out.println(test1.addWordVertical2("apcs", 1, 2)); 
-	//	System.out.println(test1.addWordVertical("hello", 2, 4)); 
-	//	System.out.println(test1.addWordVertical("helloooo", 3, 4)); 
-	//	System.out.println(test1.addWordHorizontal("woof", 3, 1)); // expect false; cannot fit;
-	//	System.out.println(test1.addWordHorizontal("woof", 3, 0)); // expect true; should fit
-	//	System.out.println(test1.addWordDiagonal("math", 1, 1));
-	//	System.out.println(test1.addWordDiagonal3("helen", 1, 5));
+       
     }
 }
