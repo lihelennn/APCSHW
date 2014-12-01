@@ -6,6 +6,7 @@ public class WordGrid{
     private int rows;
     private int cols;
     public ArrayList<String> wordsPuzzle = new ArrayList<String>();
+    public long seed;
 
    
     /**Initialize the grid to the size specified and fill all of the positions
@@ -13,7 +14,7 @@ public class WordGrid{
      *@param row is the starting height of the WordGrid
      *@param col is the starting width of the WordGrid
      */
-    public WordGrid(int rows,int cols){
+    public WordGrid(int rows,int cols, long seed){
 	int placeR = 0;
 	int placeC = 0;
 	data = new char[rows][cols];
@@ -27,6 +28,7 @@ public class WordGrid{
 	    placeR += 1;
 	    placeC = 0;
 	}
+	this.seed = seed;
     }
 
 
@@ -129,7 +131,7 @@ public class WordGrid{
     public void fillUp(){
 	int placeRow = 0;
 	int placeCol = 0;
-	Random rand = new Random();
+	Random rand = new Random(seed);
 	while (placeRow < rows){
 	    while (placeCol < cols){
 		int chara = rand.nextInt(26);
@@ -151,11 +153,11 @@ public class WordGrid{
     public void loadWordsFromFiles(String fileName, boolean fillRandomLetters) throws FileNotFoundException{
 	try{
 	    ArrayList<String> wordList = new ArrayList<String>();
-	    Random r1 = new Random();
-	    Random c1 = new Random();
-	    Random d1 = new Random();
-	    Random dy2 = new Random();
-	    Random dx2 = new Random();
+	    Random r1 = new Random(seed);
+	    Random c1 = new Random(seed);
+	    Random d1 = new Random(seed);
+	    Random dy2 = new Random(seed);
+	    Random dx2 = new Random(seed);
 	    int count = 0;
 	    File text = new File(fileName);
 	    Scanner sc = new Scanner(text);
@@ -167,7 +169,7 @@ public class WordGrid{
 		boolean goOn = false;
 		String line = wordList.get(place);	
 		count = 0;
-		while (goOn == false && count < 5){
+		while (goOn == false && count < 20){
 		    if (addWord(line , r1.nextInt(getRows()) , c1.nextInt(getCols()) , dy2.nextInt(3) - 1 , dx2.nextInt(3) - 1) == false){
 			count += 1;
 		    }else{
@@ -203,6 +205,10 @@ public class WordGrid{
     }
 
 
+    public void setSeed(long seed){
+	Random rng = new Random();
+	rng.setSeed(seed);
+    }
 	
 
 
@@ -220,33 +226,30 @@ public class WordGrid{
 
 
     public static void main (String[]args) throws FileNotFoundException{
-	Random seed = new Random();
+	Random Rseed = new Random();
 	int row = 0;
 	int col = 0;
-	int RandomSeed = seed.nextInt();
+	int seed = Rseed.nextInt();
 	int AnswerKey = 0;
 	int place = 0;
-	Random rng = new Random();
 	if (args.length > 0){
 	    row = Integer.parseInt(args[0]);
 	    col = Integer.parseInt(args[1]);
 	    if (args.length >= 3){
-		RandomSeed = Integer.parseInt(args[2]);
+		seed = Integer.parseInt(args[2]);
 	    }
 	    if (args.length == 4){
 		AnswerKey = Integer.parseInt(args[3]);
 	    }
 	}
-	rng.setSeed(RandomSeed);
-	WordGrid test1 = new WordGrid(row, col);
+	WordGrid test1 = new WordGrid(row, col, seed);
+	test1.setSeed(seed);
 	if (AnswerKey == 1){
 	    test1.loadWordsFromFiles("words.txt", false);
-	    System.out.println(test1);
 	}else{
 	    test1.loadWordsFromFiles("words.txt", true);
-	    System.out.println("Find these words:\n" + test1.wordsInPuzzle());
-	    System.out.println(test1);
-    
 	}
+	System.out.println("Find these words:\n" + test1.wordsInPuzzle());
+	System.out.println(test1);
     }
 }
