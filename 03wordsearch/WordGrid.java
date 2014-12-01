@@ -219,11 +219,34 @@ public class WordGrid{
 	  
 
 
-	public static void main (String[]args) throws FileNotFoundException{
-	    WordGrid test1 = new WordGrid(15, 15);
+    public static void main (String[]args) throws FileNotFoundException{
+	Random seed = new Random();
+	int row = 0;
+	int col = 0;
+	int RandomSeed = seed.nextInt();
+	int AnswerKey = 0;
+	int place = 0;
+	Random rng = new Random();
+	if (args.length > 0){
+	    row = Integer.parseInt(args[0]);
+	    col = Integer.parseInt(args[1]);
+	    if (args.length >= 3){
+		RandomSeed = Integer.parseInt(args[2]);
+	    }
+	    if (args.length == 4){
+		AnswerKey = Integer.parseInt(args[3]);
+	    }
+	}
+	rng.setSeed(RandomSeed);
+	WordGrid test1 = new WordGrid(row, col);
+	if (AnswerKey == 1){
+	    test1.loadWordsFromFiles("words.txt", false);
+	    System.out.println(test1);
+	}else{
 	    test1.loadWordsFromFiles("words.txt", true);
-	    System.out.println(test1.wordsInPuzzle());
+	    System.out.println("Find these words:\n" + test1.wordsInPuzzle());
 	    System.out.println(test1);
     
 	}
     }
+}
