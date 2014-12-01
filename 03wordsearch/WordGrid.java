@@ -72,212 +72,6 @@ public class WordGrid{
 
   
 
-    private static String reverseString(String str){
-	int leng = str.length();
-	int place = leng - 1;
-	while (place >= 0){
-	    str += str.charAt(place);
-	    place -= 1;
-	}
-	str = str.substring(leng, str.length());
-	return str;
-    }
-	   
-		   
-	   
-	  
-
-
-    /**Attempts to add a given word to the specified position of the WordGrid.
-     *The word is added from left to right, must fit on the WordGrid, and must
-     *have a corresponding letter to match any letters that it overlaps.
-     *
-     *@param word is any text to be added to the word grid.
-     *@param row is the vertical locaiton of where you want the word to start.
-     *@param col is the horizontal location of where you want the word to start.
-     *@return true when the word is added successfully. When the word doesn't fit,
-     *or there are overlapping letters that do not match, then false is returned.
-     */
-    public boolean addWordHorizontal(String word, int row, int col){
-	int place = 0;
-	int origCol = col;
-	int origCol2 = col;
-	if (col + word.length() - 1 > cols){
-	    return false;
-	}else{
-	    while (place < word.length() && col < cols){
-		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
-		    place = 0;
-		    while (origCol < cols && place < word.length()){
-			if (data[row][origCol] == word.charAt(place) || data[row][origCol] == ' '){
-			    place += 1;
-			    origCol += 1;
-			}else{
-			    return false;
-			}
-		    }
-		    place = 0 ;
-		    origCol = origCol2;
-		    while (origCol < cols && place < word.length()){
-			data[row][origCol] = word.charAt(place);
-			place += 1;
-			origCol += 1;
-		    }
-		    return true;
-		}
-		
-		place += 1;
-		col += 1;
-	    }
-	    return false;
-	}
-    }
-    
-    public boolean addWordVertical(String word, int row, int col){
-	int place = 0;
-	int origRow = row;
-	int origRow2 = row;
-	if (row + word.length() - 1 > rows){
-	    return false;
-	}else{
-	    while (place < word.length() && row < rows){
-		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
-		    place = 0;
-		    while (origRow < rows && place < word.length()){
-			if (data[origRow][col] == word.charAt(place) || data[origRow][col] == ' '){
-			    place += 1;
-			    origRow += 1;
-			}else{
-			    return false;
-			}
-		    }
-		    place = 0 ;
-		    origRow = origRow2;
-		    while (origRow < rows && place < word.length()){
-			data[origRow][col] = word.charAt(place);
-			place += 1;
-			origRow += 1;
-		    }
-		    return true;
-		}
-		
-		place += 1;
-		row += 1;
-	    }
-	    return false;
-	}
-    }
-    
-
-    //vertical + diagonal should be implemented as well.
-
-
-
-
-    public boolean addWordDiagonal(String word, int row, int col){
-	int place = 0;
-	int origDiaR = row;
-	int origDiaR2 = row;
-	int origDiaC = col;
-	int origDiaC2 = col;
-	if (row + word.length() - 1 > rows || col + word.length() - 1 > cols){
-	    return false;
-	}else{
-	    while (place < word.length() && row < rows && col < cols){
-		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
-		    place = 0;
-		    while (origDiaC < cols && origDiaR < rows && place < word.length()){
-			if (data[origDiaR][origDiaC] == word.charAt(place) || data[origDiaR][origDiaC] == ' '){
-			    place += 1;
-			    origDiaR += 1;
-			    origDiaC += 1;
-			}else{
-			    return false;
-			}
-		    }
-		    place = 0 ;
-		    origDiaR = origDiaR2;
-		    origDiaC = origDiaC2;
-		    while (origDiaC < cols && origDiaR < rows && place < word.length()){
-			data[origDiaR][origDiaC] = word.charAt(place);
-			place += 1;
-			origDiaR += 1;
-			origDiaC += 1;
-		    }
-		    return true;
-		}
-		
-		place += 1;
-		row += 1;
-		col += 1;
-	    }
-	    return false;
-	}
-    }
-    
-
-    public boolean addWordDiagonal2(String word, int row, int col){
-	int place = 0;
-	int origDiaR = row;
-	int origDiaR2 = row;
-	int origDiaC = col;
-	int origDiaC2 = col;
-	if (row + word.length() - 1 > rows || col - word.length() < 0){
-	    return false;
-	}else{
-	    while (place < word.length() && row < rows && col >= 0){
-		if (data[row][col] == word.charAt(place) || data[row][col] == ' '){
-		    place = 0;
-		    while (origDiaC >= 0 && origDiaR < rows && place < word.length()){
-			if (data[origDiaR][origDiaC] == word.charAt(place) || data[origDiaR][origDiaC] == ' '){
-			    place += 1;
-			    origDiaR += 1;
-			    origDiaC -= 1;
-			}else{
-			    return false;
-			}
-		    }
-		    place = 0 ;
-		    origDiaR = origDiaR2;
-		    origDiaC = origDiaC2;
-		    while (origDiaC >= 0 && origDiaR < rows && place < word.length()){
-			data[origDiaR][origDiaC] = word.charAt(place);
-			place += 1;
-			origDiaR += 1;
-			origDiaC -= 1;
-		    }
-		    return true;
-		}
-		
-		place += 1;
-		row += 1;
-		col -= 1;
-	    }
-	    return false;
-	}
-    }
-    
-
-    public boolean addWordHorizontal2(String word, int row, int col){
-	word = reverseString(word);
-	return addWordHorizontal(word, row, col);
-    }
-
-    public boolean addWordVertical2(String word, int row, int col){
-	word = reverseString(word);
-	return addWordVertical(word, row, col);
-    }
-
-    public boolean addWordDiagonal3(String word, int row, int col){
-	word = reverseString(word);
-	return addWordDiagonal(word, row, col);
-    }
-
-    public boolean addWordDiagonal4(String word, int row, int col){
-	word = reverseString(word);
-	return addWordDiagonal2(word, row, col);
-    }
-
     public boolean checkWord(String word, int row, int col, int dy, int dx){
 	if (dy == 0 && dx == 0){
 	    return false;
@@ -322,7 +116,8 @@ public class WordGrid{
 		    }
 		    return true;
 		}
-       	    }
+		place += 1;
+	    }
 	}
 	return false;
     }
@@ -367,22 +162,17 @@ public class WordGrid{
 	    boolean goOn = false;
 	    String line = wordList.get(place);	
 	    count = 0;
-	    while (goOn == false && count < 20){
-		test1.addWord(wordList.get(place) , r1.nextInt(test1.getRows()) , c1.nextInt(test1.getCols()) , dy2.nextInt(3) - 1 , dx2.nextInt(3) - 1);
-		count += 1;
-	    }
+	    while (goOn == false && count < 5){
+		if (test1.addWord(line , r1.nextInt(test1.getRows()) , c1.nextInt(test1.getCols()) , dy2.nextInt(3) - 1 , dx2.nextInt(3) - 1) == false){
+		    count += 1;
+		}else{
+		    goOn = true;
+		}
+       	    }
 	    count = 0;
 	    place += 1;
-	}
-	   
-	
-
-
-	
-
-
-
-	System.out.println(test1);
-       
+	}	   
+        System.out.println(test1);
+    
     }
 }
