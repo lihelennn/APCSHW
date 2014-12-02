@@ -1,14 +1,15 @@
 public class OrderedSuperArray extends SuperArray implements Comparable<OrderedSuperArray>{
 
     String[]data;
+    String str = "";
 
-    // public String compareTo(String str, String other){
-    //	if ((int)(str.charAt(0)) > (int)(other.charAt(0))){
-    //	    return str;
-    //	}else{
-    //	    return other;
-    //	}
-    //}
+    public String compareTo(String other){
+    	if ((int)(str.charAt(0)) > (int)(other.charAt(0))){
+    	    return str;
+    	}else{
+    	    return other;
+    	}
+    }
 
     public void add(String element){
 	int place = 0;
@@ -23,6 +24,11 @@ public class OrderedSuperArray extends SuperArray implements Comparable<OrderedS
 	    }
 	    place += 1;
 	}
+    }
+
+    public void set(int index, String e){
+	remove(index);
+	add(e);
     }
 	
 		
