@@ -6,7 +6,7 @@ public class WordGrid{
     private int rows;
     private int cols;
     public ArrayList<String> wordsPuzzle = new ArrayList<String>();
-    public long seed;
+    Random rng = new Random();
 
    
     /**Initialize the grid to the size specified and fill all of the positions
@@ -28,7 +28,7 @@ public class WordGrid{
 	    placeR += 1;
 	    placeC = 0;
 	}
-	this.seed = seed;
+	rng.setSeed(seed);
     }
 
 
@@ -131,10 +131,9 @@ public class WordGrid{
     public void fillUp(){
 	int placeRow = 0;
 	int placeCol = 0;
-	Random rand = new Random(seed);
 	while (placeRow < rows){
 	    while (placeCol < cols){
-		int chara = rand.nextInt(26);
+		int chara = rng.nextInt(26);
 		if (data[placeRow][placeCol] == '_' || data[placeRow][placeCol] == ' '){
 		    data[placeRow][placeCol] = (char)('a' + chara);
 		}
@@ -153,11 +152,11 @@ public class WordGrid{
     public void loadWordsFromFiles(String fileName, boolean fillRandomLetters) throws FileNotFoundException{
 	try{
 	    ArrayList<String> wordList = new ArrayList<String>();
-	    Random r1 = new Random(seed);
-	    Random c1 = new Random(seed);
-	    Random d1 = new Random(seed);
-	    Random dy2 = new Random(seed);
-	    Random dx2 = new Random(seed);
+	    // Random r1 = new Random(seed);
+	    // Random c1 = new Random(seed);
+	    //Random d1 = new Random(seed);
+	    //Random dy2 = new Random(seed);
+	    //Random dx2 = new Random(seed);
 	    int count = 0;
 	    File text = new File(fileName);
 	    Scanner sc = new Scanner(text);
@@ -170,7 +169,7 @@ public class WordGrid{
 		String line = wordList.get(place);	
 		count = 0;
 		while (goOn == false && count < 20){
-		    if (addWord(line , r1.nextInt(getRows()) , c1.nextInt(getCols()) , dy2.nextInt(3) - 1 , dx2.nextInt(3) - 1) == false){
+		    if (addWord(line , rng.nextInt(getRows()) , rng.nextInt(getCols()) , rng.nextInt(3) - 1 , rng.nextInt(3) - 1) == false){
 			count += 1;
 		    }else{
 			goOn = true;
@@ -206,7 +205,6 @@ public class WordGrid{
 
 
     public void setSeed(long seed){
-	Random rng = new Random();
 	rng.setSeed(seed);
     }
 	
