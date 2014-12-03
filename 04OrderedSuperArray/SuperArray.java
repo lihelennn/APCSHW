@@ -153,12 +153,37 @@ public class SuperArray{
 	currentNumber -= 1;
 	return removed;
     }
+
+    public void insertionSort(String element){
+	int placee = 0;
+	String old = "";
+	while (placee < this.size() - 1){
+	    if (this.get(placee + 1).compareTo(element) >= 0){
+		old = this.set(placee , element);
+		placee += 1;
+		while (placee < this.size()- 1){
+		    old = set(placee + 1, old);
+		    placee += 1;
+		}
+		placee = this.size();
+	    }else{
+		placee += 1;
+	    }
+	}
+    }
+    
+
+
+
     public static void main(String[]args){
 	try{
-	    SuperArray test1 = new OrderedSuperArray();
-	    SuperArray test2 = new OrderedSuperArray(2);
+	    SuperArray test1 = new SuperArray();
+	    SuperArray test2 = new SuperArray(2);
 	    test1.add("hello");
-	    System.out.println(test2);
+	    test1.add("meow");
+	    test1.add("woof");
+	    test1.insertionSort("zzz");
+	    System.out.println(test1);
 	   
 	   
 	}
