@@ -172,8 +172,42 @@ public class SuperArray{
 	}
     }
     
-
-
+public void insertionSort(){
+	int place = 0;
+	int place2 = 0;
+	String orig = "";
+	String old = "";
+	while (place < this.size()){
+		if (this.get(place - 1).toCompare(this.get(place)) >= 0){
+			orig = get(place);
+			remove(orig);
+		
+			while (place2 < size()){
+				if (orig.toCompare(get(place2)) <= 0 && place2 == 0){
+					old = set(place2, orig);
+					while (place2 < size() - 1){
+						old = set(place2 + 1, old);
+						place2 += 1;
+					}
+				}else{
+					if (get(place).toCompare(get(place2)) <= 0 && get(place).toCompare(get(place2 + 1)) >= 0){
+						old = set(place2, orig);
+						while (place2 < size() - 1){
+							old = set(place2 + 1, old);
+							place2 += 1;
+						}
+					}
+					place2 += 1;
+				}
+			}
+			place += 1;
+		}
+		place += 1;
+		place2 = 0;
+		}
+}
+						
+		
 
     public static void main(String[]args){
 	try{
