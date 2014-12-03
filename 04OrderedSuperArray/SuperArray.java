@@ -154,75 +154,72 @@ public class SuperArray{
 	return removed;
     }
 
-    public void insertionSort(String element){
-	int placee = 0;
-	String old = "";
-	while (placee < this.size() - 1){
-	    if (this.get(placee + 1).compareTo(element) >= 0){
-		old = this.set(placee , element);
-		placee += 1;
-		while (placee < this.size()- 1){
-		    old = set(placee + 1, old);
-		    placee += 1;
-		}
-		placee = this.size();
-	    }else{
-		placee += 1;
-	    }
-	}
-    }
+    // public void insertionSort(String element){
+    //	int placee = 0;
+    String old = "";
+    ///	while (placee < this.size() - 1){
+    //    if (this.get(placee + 1).compareTo(element) >= 0){
+    //old = this.set(placee , element);
+    //	placee += 1;
+    //	while (placee < this.size()- 1){
+    //	    old = set(placee + 1, old);
+    //	    placee += 1;
+    //	}
+    //	placee = this.size();
+    //	    }else{
+    //	placee += 1;
+    //    }
+    //	}
+    // }
     
-public void insertionSort(){
+    public void insertionSort(){
 	int place = 0;
 	int place2 = 0;
 	String orig = "";
 	String old = "";
-	while (place < this.size()){
-		if (this.get(place - 1).toCompare(this.get(place)) >= 0){
-			orig = get(place);
-			remove(orig);
-		
-			while (place2 < size()){
-				if (orig.toCompare(get(place2)) <= 0 && place2 == 0){
-					old = set(place2, orig);
-					while (place2 < size() - 1){
-						old = set(place2 + 1, old);
-						place2 += 1;
-					}
-				}else{
-					if (get(place).toCompare(get(place2)) <= 0 && get(place).toCompare(get(place2 + 1)) >= 0){
-						old = set(place2, orig);
-						while (place2 < size() - 1){
-							old = set(place2 + 1, old);
-							place2 += 1;
-						}
-					}
-					place2 += 1;
-				}
+	while (place < size() - 1){
+	    if (get(place + 1).compareTo(get(place)) <= 0){
+		orig = remove(place);		
+		while (place2 < size() - 1){
+		    if (orig.compareTo(get(place2)) <= 0 && place2 == 0){
+			old = set(place2, orig);
+			while (place2 < size() - 1){
+			    old = set(place2 + 1, old);
 			}
-			place += 1;
+		    }
+		    if (get(place).compareTo(get(place2)) <= 0 && get(place).compareTo(get(place2 + 1)) >= 0){
+			old = set(place2, orig);
+			while (place2 < size() - 1){
+			    old = set(place2 + 1, old);
+			    place2 += 1;
+			}
+		    }
+		    place2 += 1;
 		}
-		place += 1;
-		place2 = 0;
-		}
-}
-						
-		
-
-    public static void main(String[]args){
-	try{
-	    SuperArray test1 = new SuperArray();
-	    SuperArray test2 = new SuperArray(2);
-	    test1.add("hello");
-	    test1.add("meow");
-	    test1.add("woof");
-	    test1.insertionSort("zzz");
-	    System.out.println(test1);
-	   
-	   
-	}
-	catch(IndexOutOfBoundsException e){
-	    System.out.println("hahaha your index is out of bounds.");
+	    }
+	    place += 1;
 	}
     }
+		  				
+		
+
+public static void main(String[]args){
+    try{
+	SuperArray test1 = new SuperArray();
+	SuperArray test2 = new SuperArray(2);
+	test1.add("hello");
+	test1.add("meow");
+	test1.add("woof");
+	test1.add("aaa");
+	test1.add("zzz");
+	System.out.println(test1);
+	test1.insertionSort();
+	System.out.println(test1);
+	   
+	   
+    }
+    catch(IndexOutOfBoundsException e){
+	System.out.println("hahaha your index is out of bounds.");
+    }
+}
 }
