@@ -2,25 +2,27 @@ public class OrderedSuperArray extends SuperArray{
 
     String[]data;
 
-    public void add(String element){
-	System.out.println(element);
-	if (size() == 0){
-	    super.add(element);
-	    System.out.println(data + "first element woohoo!");
-	}else{
-	    int place = 0;
-	    String old = "";
-	    while (place < this.size()){
-		System.out.println(data);
-		if (element.compareTo(get(place)) <= 0){
-		    System.out.println("yay");
-		    super.add(place, element);
-		}
-		place += 1;
-		System.out.println(data);
-	    }
-	}
-    }
+    // public void add(String element){
+    // 	System.out.println(element);
+    // 	if (size() == 0){
+    // 	    super.add(element);
+    // 	    System.out.println(data + "first element woohoo!");
+    // 	}else{
+    // 	    int place = 0;
+    // 	    String old = "";
+    // 	    while (place < this.size()){
+    // 		System.out.println(data);
+    // 		if (element.compareTo(get(place)) <= 0){
+    // 		    System.out.println("yay");
+    // 		    super.add(place, element);
+    // 		}
+    // 		place += 1;
+    // 		System.out.println(data);
+    // 	    }
+    // 	}
+    // }
+
+
   
 
     public String set(int index, String e){
@@ -28,6 +30,16 @@ public class OrderedSuperArray extends SuperArray{
 	add(e);
 	return str;
     }
+    public void add(String o){
+	int index = size();
+	System.out.println(data);
+	System.out.println(o);
+	while( index >0 && get(index-1).compareTo(o) > 0 ){
+	    index--;
+	}
+	super.add(index, o);
+    }
+
 	
 		
 
@@ -37,13 +49,13 @@ public class OrderedSuperArray extends SuperArray{
     }
 
     public void badInsertionSort(){
-        OrderedSuperArray c = new OrderedSuperArray();
-        while( this.size() > 0){ 
-            c.add(this.remove(0));
-        }
-        while(c.size() > 0){
-            this.add(c.remove(0));
-        }
+	OrderedSuperArray c = new OrderedSuperArray();
+	while( this.size() > 0){ 
+	    c.add(this.remove(0));
+	}
+	while(c.size() > 0){
+	    this.add(c.remove(0));
+	}
     }
 
 
