@@ -5,4 +5,6 @@ Alright, so it finally works now, but the code is super long, and I feel like I 
 …and this method for random string worked!
 
 -using the built in timer to time the code
+---->I can't seem to be able to get this working..
+---->Your example of BadInsertionSort() is also not quite working...
 3.
