@@ -105,8 +105,8 @@ public class SuperArray{
 	}
     }
     public void add(int index, String o){ //referenced your code because my code was breaking for this function. I looked at how you scanned through the index by going down instead of going up.
-	if (index == size()){
-	    resize((index + 1) * 2);
+	if (size() == data.length){
+	    resize(size() * 2);
 	}
 	int place = size() - 1;
 	while (place > index){
