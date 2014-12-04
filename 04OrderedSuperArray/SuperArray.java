@@ -61,15 +61,24 @@ public class SuperArray{
 	}
 	data = data2;
     }
-    public void add(String e){
-	if (currentNumber < data.length){
-	    data[currentNumber] = e;
-	    currentNumber += 1;
-	}else{
-	    resize(data.length * 2);
-	    data[currentNumber] = e;
-	    currentNumber += 1;
+    //    public void add(String e){
+    //	if (currentNumber < data.length){
+    //	    data[currentNumber] = e;
+    //    currentNumber += 1;
+    //	}else{
+    //   resize(data.length * 2);
+    //    data[currentNumber] = e;
+    //   currentNumber += 1;
+    //   }
+    //	currentNumber += 1;
+    //	leftJustify();
+    // }
+
+    public void add(String e){ //looked at your code to fix some stuff because mine was previously too complicated.
+	if (size() == data.length){
+	    resize(size() * 2);
 	}
+	data[size()] = e;
 	currentNumber += 1;
 	leftJustify();
     }
@@ -94,33 +103,39 @@ public class SuperArray{
 	    return old;
 	}
     }
-    public void add(int index, String o){
-	int place = 0;
-	if (index >= data.length){
+    public void add(int index, String o){ //referenced your code because my code was breaking for this function. I looked at how you scanned through the index by going down instead of going up.
+	if (index == size()){
 	    resize((index + 1) * 2);
-	    data[index] = o;
-	    leftJustify();
-	}else{
-	    place = 0;
-	    String[]data2 = new String[data.length];
-	    while (place < index){
-		data2[place] = data[place];
-		place += 1;
-	    }
-	    if (place == index){
-		data2[index] = o;
-		index += 1;
-	    }
-	    while (place < size()){
-		data2[index] = data[place];
-		place += 1;
-		index += 1;
-	    }
-	    data = data2;
-	    leftJustify();
 	}
+	int place = size() - 1;
+	while (place > index){
+	    data[place] = data[place - 1];
+	    place -= 1;
+	}
+	data[index] = o;
 	currentNumber += 1;
+	leftJustify();
     }
+
+
+    //	    while (place < index){
+    //		data2[place] = data[place];
+    //		place += 1;
+    //	    }
+    //	    if (place == index){
+    //		data2[index] = o;
+    //		index += 1;
+    //	    }
+    //	    while (place < size()){
+    //		data2[index] = data[place];
+    //		place += 1;
+    //		index += 1;
+    //	    }
+    //	    data = data2;
+    //    leftJustify();
+    //}
+    //currentNumber += 1;
+    //}
     public String remove (int index){
 	int place = 0;
 	String removed = null;
