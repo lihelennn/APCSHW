@@ -93,13 +93,14 @@ public class SuperArray{
 	    return "" + data[index];
 	}
     }
-    public String set(int index, String e){
+    public String set(int index, String e){ //changed for insertionSort method (changing nulls to something, so size() cannot throw exception)
 	String old;
-	if (index < 0 || index >= size()){
+	if (index < 0 || index >= data.length){
 	    throw new IndexOutOfBoundsException();
 	}else{
 	    old = data[index];
 	    data[index] = e;
+	    leftJustify();
 	    return old;
 	}
     }
@@ -174,21 +175,24 @@ public class SuperArray{
 	int place2 = 0;
 	String orig = "";
 	String old = "";
-	while (place < size() - 1){
+	while (place < size()){
 	    System.out.println(this);
 	    if (get(place - 1).compareTo(get(place)) >= 0){
 		orig = remove(place);
-		System.out.println(orig);
+		System.out.println(orig + " is being removed");
 		System.out.println(this);
 		System.out.println(1);		
 		while (place2 < size() - 1){
-		    if ((place2 == 0 && orig.compareTo(get(0)) <= 0) || (orig.compareTo(get(place2 - 1)) >= 0 && orig.compareTo(get(place2)) <= 0)){	     
-			System.out.println(place2);
+		    System.out.println(2 + " while loop with place2");
+		    if ((place2 == 0 && orig.compareTo(get(0)) <= 0) || (place2 != 0 && orig.compareTo(get(place2 - 1)) >= 0 && orig.compareTo(get(place2)) <= 0)){	     System.out.println("good1");
 			old = set(place2, orig);
-			while (place2 < size() - 1){
-			    old = set(place2 + 1, old);
+			place2 += 1;
+			while (place2 < size()){
+			    System.out.println("good2");
+			    old = set(place2 , old);
 			    place2 += 1;
 			}
+			add(old);
 			place2 = size();
 		    }
 		    
@@ -199,7 +203,9 @@ public class SuperArray{
 	    place += 1;
 	}
     }
-		  				
+			 
+			    
+			   		
 		
 
     public static void main(String[]args){
