@@ -154,72 +154,58 @@ public class SuperArray{
 	return removed;
     }
 
-    // public void insertionSort(String element){
-    //	int placee = 0;
-    String old = "";
-    ///	while (placee < this.size() - 1){
-    //    if (this.get(placee + 1).compareTo(element) >= 0){
-    //old = this.set(placee , element);
-    //	placee += 1;
-    //	while (placee < this.size()- 1){
-    //	    old = set(placee + 1, old);
-    //	    placee += 1;
-    //	}
-    //	placee = this.size();
-    //	    }else{
-    //	placee += 1;
-    //    }
-    //	}
-    // }
-    
     public void insertionSort(){
-	int place = 0;
+	int place = 1;
 	int place2 = 0;
 	String orig = "";
 	String old = "";
 	while (place < size() - 1){
-	    if (get(place + 1).compareTo(get(place)) <= 0){
-		orig = remove(place);		
+	    System.out.println(this);
+	    if (get(place - 1).compareTo(get(place)) >= 0){
+		orig = remove(place);
+		System.out.println(orig);
+		System.out.println(this);
+		System.out.println(1);		
 		while (place2 < size() - 1){
-		    if (orig.compareTo(get(place2)) <= 0 && place2 == 0){
-			old = set(place2, orig);
-			while (place2 < size() - 1){
-			    old = set(place2 + 1, old);
-			}
-		    }
-		    if (get(place).compareTo(get(place2)) <= 0 && get(place).compareTo(get(place2 + 1)) >= 0){
+		    if ((place2 == 0 && orig.compareTo(get(0)) <= 0) || (orig.compareTo(get(place2 - 1)) >= 0 && orig.compareTo(get(place2)) <= 0)){	     
+			System.out.println(place2);
 			old = set(place2, orig);
 			while (place2 < size() - 1){
 			    old = set(place2 + 1, old);
 			    place2 += 1;
 			}
+			place2 = size();
 		    }
+		    
 		    place2 += 1;
 		}
 	    }
+	    place2 = 0;
 	    place += 1;
 	}
     }
 		  				
 		
 
-public static void main(String[]args){
-    try{
-	SuperArray test1 = new SuperArray();
-	SuperArray test2 = new SuperArray(2);
-	test1.add("hello");
-	test1.add("meow");
-	test1.add("woof");
-	test1.add("aaa");
-	test1.add("zzz");
-	System.out.println(test1);
-	test1.insertionSort();
-	System.out.println(test1);
+    public static void main(String[]args){
+	try{
+	    SuperArray test1 = new SuperArray();
+	    SuperArray test2 = new SuperArray(2);
+	    test1.add("hello");
+	    test1.add("meow");
+	    test1.add("zzz");
+	    test1.add("woof");
+	    test1.add("aaa");
+	    test1.add("zzz");
+	    test1.add("jjj");
+	    System.out.println(test1);
+	    test1.insertionSort();
+	    System.out.println(test1);
 	   
 	   
+	}
+	catch(IndexOutOfBoundsException e){
+	    System.out.println("hahaha your index is out of bounds.");
+	}
     }
-    catch(IndexOutOfBoundsException e){
-	System.out.println("hahaha your index is out of bounds.");
-    }
-}
 }
