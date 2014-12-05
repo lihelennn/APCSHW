@@ -189,27 +189,25 @@ public class SuperArray{
     public void insertionSort(){
 	int place = 1;
 	int place2 = 0;
-	String orig = "";
 	String old = "";
+	String orig = "";
 	while (place < size()){
+	    old = get(place);
+	    //	    System.out.println(this);
 	    if (get(place - 1).compareTo(get(place)) >= 0){
-		orig = remove(place);	
-		while (place2 < size() - 1){
-		    if ((place2 == 0 && orig.compareTo(get(0)) <= 0) || (place2 != 0 && orig.compareTo(get(place2 - 1)) >= 0 && orig.compareTo(get(place2)) <= 0)){			old = set(place2, orig);
-			place2 += 1;
-			while (place2 < size()){
+		while (place2 >= 0){
+		    if (get(place).compareTo(get(place2)) <= 0){
+			while (place2 <= place){
 			    old = set(place2 , old);
 			    place2 += 1;
 			}
-			add(old);
-			place2 = size();
-		    }
-		    
-		    place2 += 1;
+			place2 = -10;
+      		    }	
+		    place2 += 1;	    
 		}
 	    }
-	    place2 = 0;
 	    place += 1;
+	    place2 = 0;
 	}
     }
 	
@@ -256,53 +254,50 @@ public class SuperArray{
 			   		
 		
 
-    //     public static void main(String[]args){
-    //     	try{
-    //     	    SuperArray test1 = new SuperArray();
-    //     	    SuperArray test2 = new SuperArray(2);
-    //     	    test1.add("hello");
-    //     	    test1.add("meow");
-    //     	    test1.add("zzz");
-    //     	    test1.add("woof");
-    //     	    test1.add("aaa");
-    //     	    test1.add("zzz");
-    //     	    test1.add("jjj");
-    //     	    System.out.println(test1);
-    // 	    //    	    test1.insertionSort();
-    // 	    test1.selectionSort();
-    //     	    System.out.println(test1);
-    // 	    // System.out.println(test1.find("zzz")); // expect 5;
-    // 	    // System.out.println(test1.find("meow")); // expect 3;
-    // 	    // System.out.println(test1.find("ccc")); // this does not exist; expect -1;
+    public static void main(String[]args){
+	try{
+	    long startTime = System.currentTimeMillis();
+	    SuperArray final1 = new SuperArray();
+	    Random rand = new Random();
+	    String tester = "aaa";
+
+	    int count = 0;
+	    while (count < 1000){
+		tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
+		final1.add(tester);
+		count += 1;
+	    }
+	    System.out.println(final1);
+	    final1.insertionSort();
+	    long stopTime = System.currentTimeMillis();
+	    long elapsedTime = stopTime - startTime;
+	    System.out.println(elapsedTime);
+	    System.out.println(final1);
+
+
+	    SuperArray test1 = new SuperArray();
+	    SuperArray test2 = new SuperArray(2);
+	    test1.add("hello");
+	    test1.add("meow");
+	    test1.add("zzz");
+	    test1.add("woof");
+	    test1.add("aaa");
+	    test1.add("zzz");
+	    test1.add("jjj");
+	    System.out.println(test1);
+	    test1.insertionSort();
+    	    test1.selectionSort();
+	    System.out.println(test1);
+    	    System.out.println(test1.find("zzz")); //expect 5;
+    	    System.out.println(test1.find("meow")); //expect 3;
+    	    System.out.println(test1.find("ccc")); //this does not exist; expect -1;
 	   
 	   
-    //     	}
-    //     	catch(IndexOutOfBoundsException e){
-    //     	    System.out.println("hahaha your index is out of bounds.");
-    //     	}
-    //     }
-    // }
-
-
-    // public static void main(String[]args){
-    // 	long startTime = System.currentTimeMillis();
-    // 	SuperArray final1 = new SuperArray();
-    // 	Random rand = new Random();
-    // 	String tester = "aaa";
-
-    // 	int count = 0;
-    // 	while (count < 1000){
-    // 	    tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
-    // 	    final1.add(tester);
-    // 	    count += 1;
-    // 	}
-
-    // 	final1.insertionSort();
-    // 	System.out.println(final1);
-    // 	long stopTime = System.currentTimeMillis();
-    // 	long elapsedTime = stopTime - startTime;
-    // 	System.out.println(elapsedTime);
-
-    // }
-    // }
+	}
+	catch(IndexOutOfBoundsException e){
+	    System.out.println("hahaha your index is out of bounds.");
+	}
+    }
 }
+
+
