@@ -229,6 +229,28 @@ public class SuperArray{
 	}
 	return ans;
     }
+
+    public void selectionSort(){
+	int place = 0;
+	int GoTo = 0;
+	int smallestInd = 0;
+	String swapped = "";
+	while (place < size()){
+	    while (GoTo < size()){
+		if (get(place).compareTo(get(GoTo)) >= 0){
+		    smallestInd = GoTo;
+		}
+		GoTo += 1;
+	    }
+	    swapped = set(place, get(smallestInd));
+	    set(smallestInd, swapped);
+	    place += 1;
+		GoTo = place;
+	    System.out.println(this);
+	}
+    }
+		
+
 		 
 			    
 			   		
@@ -246,11 +268,12 @@ public class SuperArray{
     	    test1.add("zzz");
     	    test1.add("jjj");
     	    System.out.println(test1);
-    	    test1.insertionSort();
+	    //    	    test1.insertionSort();
+	    test1.selectionSort();
     	    System.out.println(test1);
-	    System.out.println(test1.find("zzz")); // expect 5;
-	    System.out.println(test1.find("meow")); // expect 3;
-	    System.out.println(test1.find("ccc")); // this does not exist; expect -1;
+	    // System.out.println(test1.find("zzz")); // expect 5;
+	    // System.out.println(test1.find("meow")); // expect 3;
+	    // System.out.println(test1.find("ccc")); // this does not exist; expect -1;
 	   
 	   
     	}
