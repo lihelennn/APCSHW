@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class SuperArray{
 
     String[]data;
@@ -49,7 +51,11 @@ public class SuperArray{
 	    }
 	    place += 1;
 	}
-	currentNumber = sizee - 1;
+	if (sizee > 0){
+	    currentNumber = sizee - 1;
+	}else{
+	    currentNumber = sizee;
+	}
 	return sizee;
     }
     public void resize(int newCapacity){
@@ -74,11 +80,13 @@ public class SuperArray{
     //	leftJustify();
     // }
 
-    public void add(String e){ //looked at your code to fix some stuff because mine was previously too complicated.
+    public void add(String e){ 
+	//looked at your code to fix some stuff because mine was previously too complicated.
 	if (size() == data.length){
 	    resize(size() * 2);
 	}
-	data[size()] = e;
+	currentNumber += 1;
+	data[currentNumber] = e;
 	currentNumber += 1;
 	leftJustify();
     }
@@ -104,11 +112,17 @@ public class SuperArray{
 	    return old;
 	}
     }
-    public void add(int index, String o){ //referenced your code because my code was breaking for this function. I looked at how you scanned through the index by going down instead of going up.
+
+
+    public void add(int index, String o){ 
+	//referenced your code because my code was breaking for this function. I looked at how you scanned through the index by going down instead of going up.
+	if (index < 0 || index > size()){
+	    throw new IndexOutOfBoundsException();
+	}
 	if (size() == data.length){
 	    resize(size() * 2);
 	}
-	int place = size() - 1;
+	int place = data.length - 1;
 	while (place > index){
 	    data[place] = data[place - 1];
 	    place -= 1;
@@ -137,6 +151,8 @@ public class SuperArray{
     //}
     //currentNumber += 1;
     //}
+
+
     public String remove (int index){
 	int place = 0;
 	String removed = null;
@@ -176,19 +192,12 @@ public class SuperArray{
 	String orig = "";
 	String old = "";
 	while (place < size()){
-	    System.out.println(this);
 	    if (get(place - 1).compareTo(get(place)) >= 0){
-		orig = remove(place);
-		System.out.println(orig + " is being removed");
-		System.out.println(this);
-		System.out.println(1);		
+		orig = remove(place);	
 		while (place2 < size() - 1){
-		    System.out.println(2 + " while loop with place2");
-		    if ((place2 == 0 && orig.compareTo(get(0)) <= 0) || (place2 != 0 && orig.compareTo(get(place2 - 1)) >= 0 && orig.compareTo(get(place2)) <= 0)){	     System.out.println("good1");
-			old = set(place2, orig);
+		    if ((place2 == 0 && orig.compareTo(get(0)) <= 0) || (place2 != 0 && orig.compareTo(get(place2 - 1)) >= 0 && orig.compareTo(get(place2)) <= 0)){			old = set(place2, orig);
 			place2 += 1;
 			while (place2 < size()){
-			    System.out.println("good2");
 			    old = set(place2 , old);
 			    place2 += 1;
 			}
@@ -203,30 +212,73 @@ public class SuperArray{
 	    place += 1;
 	}
     }
-			 
+	
+    public int find(String target){
+	int place = 0;
+	int ans = 0;
+	while (place < size()){
+	    if (target.equals(get(place))){
+		ans = place;
+		return ans;
+	    }
+	    place += 1;
+	}
+	if (place == size() && !get(ans).equals(target)){
+	    ans = -1;
+	    System.out.println("That element does not exist.");
+	}
+	return ans;
+    }
+		 
 			    
 			   		
 		
 
     public static void main(String[]args){
-	try{
-	    SuperArray test1 = new SuperArray();
-	    SuperArray test2 = new SuperArray(2);
-	    test1.add("hello");
-	    test1.add("meow");
-	    test1.add("zzz");
-	    test1.add("woof");
-	    test1.add("aaa");
-	    test1.add("zzz");
-	    test1.add("jjj");
-	    System.out.println(test1);
-	    test1.insertionSort();
-	    System.out.println(test1);
+    	try{
+    	    SuperArray test1 = new SuperArray();
+    	    SuperArray test2 = new SuperArray(2);
+    	    test1.add("hello");
+    	    test1.add("meow");
+    	    test1.add("zzz");
+    	    test1.add("woof");
+    	    test1.add("aaa");
+    	    test1.add("zzz");
+    	    test1.add("jjj");
+    	    System.out.println(test1);
+    	    test1.insertionSort();
+    	    System.out.println(test1);
+	    System.out.println(test1.find("zzz")); // expect 5;
+	    System.out.println(test1.find("meow")); // expect 3;
+	    System.out.println(test1.find("ccc")); // this does not exist; expect -1;
 	   
 	   
-	}
-	catch(IndexOutOfBoundsException e){
-	    System.out.println("hahaha your index is out of bounds.");
-	}
+    	}
+    	catch(IndexOutOfBoundsException e){
+    	    System.out.println("hahaha your index is out of bounds.");
+    	}
     }
 }
+
+
+// public static void main(String[]args){
+// 	long startTime = System.currentTimeMillis();
+// 	SuperArray final1 = new SuperArray();
+// 	Random rand = new Random();
+// 	String tester = "aaa";
+
+// 	int count = 0;
+// 	while (count < 1000){
+// 	    tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
+// 	    final1.add(tester);
+// 	    count += 1;
+// 	}
+
+// 	final1.insertionSort();
+// 	System.out.println(final1);
+// 	long stopTime = System.currentTimeMillis();
+// 	long elapsedTime = stopTime - startTime;
+// 	System.out.println(elapsedTime);
+
+// }
+// }
