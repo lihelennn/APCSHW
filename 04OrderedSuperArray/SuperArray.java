@@ -245,7 +245,7 @@ public class SuperArray{
 	    swapped = set(place, get(smallestInd));
 	    set(smallestInd, swapped);
 	    place += 1;
-		GoTo = place;
+	    GoTo = place;
 	    System.out.println(this);
 	}
     }
@@ -256,52 +256,53 @@ public class SuperArray{
 			   		
 		
 
-    public static void main(String[]args){
-    	try{
-    	    SuperArray test1 = new SuperArray();
-    	    SuperArray test2 = new SuperArray(2);
-    	    test1.add("hello");
-    	    test1.add("meow");
-    	    test1.add("zzz");
-    	    test1.add("woof");
-    	    test1.add("aaa");
-    	    test1.add("zzz");
-    	    test1.add("jjj");
-    	    System.out.println(test1);
-	    //    	    test1.insertionSort();
-	    test1.selectionSort();
-    	    System.out.println(test1);
-	    // System.out.println(test1.find("zzz")); // expect 5;
-	    // System.out.println(test1.find("meow")); // expect 3;
-	    // System.out.println(test1.find("ccc")); // this does not exist; expect -1;
+    //     public static void main(String[]args){
+    //     	try{
+    //     	    SuperArray test1 = new SuperArray();
+    //     	    SuperArray test2 = new SuperArray(2);
+    //     	    test1.add("hello");
+    //     	    test1.add("meow");
+    //     	    test1.add("zzz");
+    //     	    test1.add("woof");
+    //     	    test1.add("aaa");
+    //     	    test1.add("zzz");
+    //     	    test1.add("jjj");
+    //     	    System.out.println(test1);
+    // 	    //    	    test1.insertionSort();
+    // 	    test1.selectionSort();
+    //     	    System.out.println(test1);
+    // 	    // System.out.println(test1.find("zzz")); // expect 5;
+    // 	    // System.out.println(test1.find("meow")); // expect 3;
+    // 	    // System.out.println(test1.find("ccc")); // this does not exist; expect -1;
 	   
 	   
-    	}
-    	catch(IndexOutOfBoundsException e){
-    	    System.out.println("hahaha your index is out of bounds.");
-    	}
-    }
+    //     	}
+    //     	catch(IndexOutOfBoundsException e){
+    //     	    System.out.println("hahaha your index is out of bounds.");
+    //     	}
+    //     }
+    // }
+
+
+    // public static void main(String[]args){
+    // 	long startTime = System.currentTimeMillis();
+    // 	SuperArray final1 = new SuperArray();
+    // 	Random rand = new Random();
+    // 	String tester = "aaa";
+
+    // 	int count = 0;
+    // 	while (count < 1000){
+    // 	    tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
+    // 	    final1.add(tester);
+    // 	    count += 1;
+    // 	}
+
+    // 	final1.insertionSort();
+    // 	System.out.println(final1);
+    // 	long stopTime = System.currentTimeMillis();
+    // 	long elapsedTime = stopTime - startTime;
+    // 	System.out.println(elapsedTime);
+
+    // }
+    // }
 }
-
-
-// public static void main(String[]args){
-// 	long startTime = System.currentTimeMillis();
-// 	SuperArray final1 = new SuperArray();
-// 	Random rand = new Random();
-// 	String tester = "aaa";
-
-// 	int count = 0;
-// 	while (count < 1000){
-// 	    tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
-// 	    final1.add(tester);
-// 	    count += 1;
-// 	}
-
-// 	final1.insertionSort();
-// 	System.out.println(final1);
-// 	long stopTime = System.currentTimeMillis();
-// 	long elapsedTime = stopTime - startTime;
-// 	System.out.println(elapsedTime);
-
-// }
-// }
