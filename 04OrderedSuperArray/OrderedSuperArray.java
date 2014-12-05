@@ -66,6 +66,7 @@ public class OrderedSuperArray extends SuperArray{
 	test1.add("aaa");
 	test1.add("mmm");
 	test1.add("hhh");
+	test1.add("ccc");
 	System.out.println(test1);
     }
 	    
