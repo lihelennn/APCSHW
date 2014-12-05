@@ -2,25 +2,29 @@ public class OrderedSuperArray extends SuperArray{
 
     String[]data;
 
-    // public void add(String element){
-    // 	System.out.println(element);
-    // 	if (size() == 0){
-    // 	    super.add(element);
-    // 	    System.out.println(data + "first element woohoo!");
-    // 	}else{
-    // 	    int place = 0;
-    // 	    String old = "";
-    // 	    while (place < this.size()){
-    // 		System.out.println(data);
-    // 		if (element.compareTo(get(place)) <= 0){
-    // 		    System.out.println("yay");
-    // 		    super.add(place, element);
-    // 		}
-    // 		place += 1;
-    // 		System.out.println(data);
-    // 	    }
-    // 	}
-    // }
+    public void add(String element){
+    	System.out.println(element);
+    	if (size() == 0){
+    	    super.add(element);
+    	    System.out.println(this + "first element woohoo!");
+    	}else{
+
+    	    int place = size() ;
+	    while (place > 0){
+    		System.out.println(this);
+    		if (element.compareTo(get(place - 1)) >= 0){
+    		    System.out.println("yay");
+    		    super.add(place, element);
+		    place = -1;
+		}
+    		place -= 1;
+    		System.out.println(data);
+    	    }
+	    if (place == 0){
+		super.add(0, element);
+	    }
+	}
+    }
 
 
   
@@ -30,15 +34,16 @@ public class OrderedSuperArray extends SuperArray{
 	add(e);
 	return str;
     }
-    public void add(String o){
-	int index = size();
-	System.out.println(data);
-	System.out.println(o);
-	while( index >0 && get(index-1).compareTo(o) > 0 ){
-	    index--;
-	}
-	super.add(index, o);
-    }
+   
+    // public void add(String o){
+    // 	int index = size();
+    // 	System.out.println(data);
+    // 	System.out.println(o);
+    // 	while( index >0 && get(index-1).compareTo(o) > 0 ){
+    // 	    index--;
+    // 	}
+    // 	super.add(index, o);
+    // }
 
 	
 		
