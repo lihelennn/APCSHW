@@ -1,3 +1,6 @@
+Helen Li
+December 3, 2014
+
 1. I tried to test my insertionSort (), but it is not working. I tried simple methods such as test1.insertionSort() after adding elements such as “hello,” “bbb,” “zzz,” “woof,” and so on. However, this insertionSort() keeps on giving me an IndexOutofBounds Error. 
 Alright, so it finally works now, but the code is super long, and I feel like I did what is going on the the bad Insertion sort, but a lot more complex…great.
 
