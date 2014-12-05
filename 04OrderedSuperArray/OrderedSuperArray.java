@@ -44,29 +44,45 @@ public class OrderedSuperArray extends SuperArray{
     }
 
     public int find(String target){
-	int place = (size() / 2);
+	int place = (size() / 2) - 1;
 	int ans = -1;
 	int toEnd;
 	int toStart;
-	while (place < size() && place > 0){
-	    toEnd = size() - place;
+	while (place < size() && place >= 0){
+	    toEnd = size() - place - 1;
 	    toStart = place; // - 0 (not necessary; used to show)
 	    if (target.compareTo(get(place)) == 0){
 		ans = place;
 	    }
+	    if (place == 1){
+		if (target.compareTo(get(0)) == 0){
+		    ans = 0;
+		}
+		break;
+	    }else{
+		if (place == size() - 2){
+		    if (target.compareTo(get(place + 1)) == 0){
+			ans = place + 1;
+		    }
+		    break;
+		}
+	    }
 	    if (target.compareTo(get(place)) > 0){
 		if (toEnd > toStart){
-		    place = place + (toEnd / 2);
-		}else{
 		    place = place + (toStart / 2);
+		}else{
+		    place = place + (toEnd / 2);
 		}
 	    }else{
 		if (toEnd > toStart){
-		    place = place + (toEnd / 2);
+		    place = place - (toStart / 2);
 		}else{
-		    place = place + (toStart / 2);
+		    place = place - (toEnd / 2);
 		}
 	    }
+	}
+	if (ans == -1){
+	    System.out.println("That target does not exist:");
 	}
 	return ans;
     }
@@ -82,8 +98,13 @@ public class OrderedSuperArray extends SuperArray{
 	test1.add("helen");
 	test1.set(2, "thiswasoriginallysomething");
 	System.out.println(test1);
-	test1.badInsertionSort();
-	System.out.println(test1);
+	//	test1.badInsertionSort();
+	//	System.out.println(test1);
+	System.out.println(test1.find("bbb")); // expect 1
+	System.out.println(test1.find("aaa")); // expect 0
+	System.out.println(test1.find("thiswasoriginallysomething")); //expect 5;
+	System.out.println(test1.find("ddd")); // expect -1 : does not exist
+	System.out.println(test1.find("mmm")); // expect 4
     }
 }
    
