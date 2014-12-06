@@ -88,7 +88,27 @@ public class OrderedSuperArray extends SuperArray{
     }
 
 
+  
+   
     public static void main(String[]args){
+      	long startTime = System.currentTimeMillis();
+	OrderedSuperArray final1 = new OrderedSuperArray();
+	Random rand = new Random();
+	String tester = "aaa";
+
+	int count = 0;
+	while (count < 1000){
+	    tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
+	    final1.add(tester);
+	    count += 1;
+	}
+	final1.badInsertionSort();
+	long stopTime = System.currentTimeMillis();
+	long elapsedTime = stopTime - startTime;
+	System.out.println(final1);
+	System.out.println("BadInsertionSort Done. It took : " + elapsedTime + " milliseconds.");
+
+
 	OrderedSuperArray test1 = new OrderedSuperArray();
 	test1.add("bbb");
 	test1.add("aaa");
@@ -104,27 +124,8 @@ public class OrderedSuperArray extends SuperArray{
 	System.out.println(test1.find("aaa")); // expect 0
 	System.out.println(test1.find("thiswasoriginallysomething")); //expect 5;
 	System.out.println(test1.find("ddd")); // expect -1 : does not exist
-	System.out.println(test1.find("mmm")); // expect 4
+	System.out.println(test1.find("mmm")); // expect 4	OrderedSuperArray test1 = new OrderedSuperArray();
+
+
     }
 }
-   
-//   public static void main(String[]args){
-// 	long startTime = System.currentTimeMillis();
-// 	OrderedSuperArray final1 = new OrderedSuperArray();
-// 	Random rand = new Random();
-// 	String tester = "aaa";
-
-// 	int count = 0;
-// 	while (count < 1000){
-// 	    tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
-// 	    final1.add(tester);
-// 	    count += 1;
-// 	}
-// 	final1.badInsertionSort();
-// 	System.out.println(final1);
-// 	long stopTime = System.currentTimeMillis();
-// 	long elapsedTime = stopTime - startTime;
-// 	System.out.println(elapsedTime);
-
-//     }
-// }

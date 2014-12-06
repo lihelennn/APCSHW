@@ -267,12 +267,12 @@ public class SuperArray{
 		final1.add(tester);
 		count += 1;
 	    }
-	    System.out.println(final1);
 	    final1.insertionSort();
 	    long stopTime = System.currentTimeMillis();
 	    long elapsedTime = stopTime - startTime;
-	    System.out.println(elapsedTime);
 	    System.out.println(final1);
+	    System.out.println("BadInsertionSort Done. It took : " + elapsedTime + " milliseconds.");
+
 
 
 	    SuperArray test1 = new SuperArray();
