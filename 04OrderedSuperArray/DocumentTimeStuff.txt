@@ -4,14 +4,22 @@ December 3, 2014
 1. I tried to test my insertionSort (), but it is not working. I tried simple methods such as test1.insertionSort() after adding elements such as “hello,” “bbb,” “zzz,” “woof,” and so on. However, this insertionSort() keeps on giving me an IndexOutofBounds Error. 
 Alright, so it finally works now, but the code is super long, and I feel like I did what is going on the the bad Insertion sort, but a lot more complex…great.
 
+Fixed and shortened insertionSort() a bit ...
+
 2. 
-a) I will test my insertionSort() by make an array of Strings with while loops. There will be approximately 100 words, and each word will be a modification of the original String, “aaa.” The first letter will be changed to a random letter throughout my adding of Strings to my array. This uses Character.toString(char).
+a) I will test my insertionSort() by make an array of Strings with while loops. There will be approximately 1000 words, and each word will be a modification of the original String, “aaa.” The first letter will be changed to a random letter throughout my adding of Strings to my array. This uses Character.toString(char).
 …and this method for random string worked!
 
--using the built in timer to time the code. Thanks to http://www.vogella.com/tutorials/JavaPerformance/article.html#runtimeinfo_runtime for teaching me how to use the timer.
+-using the built in timer to time the code. Thanks to http://www.vogella.com/tutorials/JavaPerformance/article.html#runtimeinfo_runtime for teaching me how to use the timer. (milliseconds)
 
 b) So the times for the SuperArray...
 SuperArray : ~4500 millisecods
 OrderedSuperArray with BadInsertionSort: ~1200 milliseconds
 
 NOO! I worked so hard on my code :( now I am going to go back and fix it.
+
+I fixed it so that:
+SuperArray: ~1300 milliseconds
+OrderedSuperArray with BadInsertionSort: ~1170 milliseconds.
+
+They are pretty close... :)
