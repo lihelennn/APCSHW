@@ -26,11 +26,11 @@ public class SuperArray{
     }
     public SuperArray(){
 	data = new String[10];
-	System.out.println("Default array created");
+	// System.out.println("Default array created");
     }
     public SuperArray(int length){
 	data = new String[length];
-	System.out.println("Array created");
+	// System.out.println("Array created");
     }
     public String toString(){
 	int place = 0;
@@ -210,6 +210,7 @@ public class SuperArray{
 	    place += 1;
 	    place2 = 0;
 	}
+	System.out.println("insertionSort complete.");
     }
 	
     public int find(String target){
@@ -236,8 +237,10 @@ public class SuperArray{
 	String swapped = "";
 	while (place < size()){
 	    while (GoTo < size()){
-		if (get(place).compareTo(get(GoTo)) >= 0){
+		if (get(place).compareTo(get(GoTo)) > 0 && get(GoTo).compareTo(get(smallestInd)) < 0){
+		    // System.out.println(get(place) + "compareTo " + get(GoTo) + "= " + get(place).compareTo(get(GoTo)));			
 		    smallestInd = GoTo;
+		    // System.out.println("GoTo = " + GoTo);
 		}
 		GoTo += 1;
 	    }
@@ -245,7 +248,9 @@ public class SuperArray{
 	    set(smallestInd, swapped);
 	    place += 1;
 	    GoTo = place;
+	    smallestInd = place;
 	}
+	System.out.println("selectionSort complete.");
     }
 		
 
@@ -256,51 +261,51 @@ public class SuperArray{
 
     public static void main(String[]args){
 	try{
-	    // long startTime = System.currentTimeMillis();
-	    // SuperArray final1 = new SuperArray();
-	    // Random rand = new Random();
-	    // String tester = "aaa";
+	    long startTime = System.currentTimeMillis();
+	    SuperArray final1 = new SuperArray();
+	    Random rand = new Random();
+	    String tester = "aaa";
 
-	    // int count = 0;
-	    // while (count < 1000){
-	    // 	tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
-	    // 	final1.add(tester);
-	    // 	count += 1;
-	    // }
-	    // final1.insertionSort();
-	    // long stopTime = System.currentTimeMillis();
-	    // long elapsedTime = stopTime - startTime;
+	    int count = 0;
+	    while (count < 1000){
+	    	tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
+	    	final1.add(tester);
+	    	count += 1;
+	    }
+	    final1.insertionSort();
+	    long stopTime = System.currentTimeMillis();
+	    long elapsedTime = stopTime - startTime;
 	    // System.out.println(final1);
-	    // System.out.println("BadInsertionSort Done. It took : " + elapsedTime + " milliseconds.");
+	    System.out.println("InsertionSort Done. It took : " + elapsedTime + " milliseconds.");
 
 
 
 	    SuperArray test2 = new SuperArray();
 	    int place = 0;
-	    while (place < 100){
+	    while (place < 1000){
 		test2.add(Integer.toString(place));
 		place += 1;
 	    }
-	    System.out.println(test2);
+	    // System.out.println(test2);
 	    test2.selectionSort();
-	    System.out.println(test2);
+	    // System.out.println(test2);
 
-	    // SuperArray test1 = new SuperArray(2);
-	    // test1.add("hello");
-	    // test1.add("meow");
-	    // test1.add("zzz");
-	    // test1.add("woof");
-	    // test1.add("aaa");
-	    // test1.add("zzz");
-	    // test1.add("jjj");
+	    SuperArray test1 = new SuperArray(2);
+	    test1.add("hello");
+	    test1.add("meow");
+	    test1.add("zzz");
+	    test1.add("woof");
+	    test1.add("aaa");
+	    test1.add("zzz");
+	    test1.add("jjj");
 	    // System.out.println(test1);
-	    // test1.insertionSort();
-    	    // test1.selectionSort();
+	    //	    test1.insertionSort();
+      	    test1.selectionSort();
 	    // System.out.println(test1);
-    	    // System.out.println(test1.find("zzz")); //expect 5;
-    	    // System.out.println(test1.find("meow")); //expect 3;
-    	    // System.out.println(test1.find("ccc")); //this does not exist; expect -1;
-	   
+    	    System.out.println(test1.find("zzz")); //expect 5;
+    	    System.out.println(test1.find("meow")); //expect 3;
+    	    System.out.println(test1.find("ccc")); //this does not exist; expect -1;
+	    // System.out.println(Integer.toString(2).compareTo(Integer.toString(13)));
 	   
 	}
 	catch(IndexOutOfBoundsException e){
