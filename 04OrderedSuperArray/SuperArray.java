@@ -35,9 +35,10 @@ public class SuperArray{
     public String toString(){
 	int place = 0;
 	String answer = "[";
-	while (place < data.length){
+	while (place < data.length && data[place] != null){
 	    answer += ("" + data[place] + " ");
 	    place += 1;
+	    
 	}
 	answer += "]";
 	return answer;
@@ -244,7 +245,6 @@ public class SuperArray{
 	    set(smallestInd, swapped);
 	    place += 1;
 	    GoTo = place;
-	    System.out.println(this);
 	}
     }
 		
@@ -256,41 +256,50 @@ public class SuperArray{
 
     public static void main(String[]args){
 	try{
-	    long startTime = System.currentTimeMillis();
-	    SuperArray final1 = new SuperArray();
-	    Random rand = new Random();
-	    String tester = "aaa";
+	    // long startTime = System.currentTimeMillis();
+	    // SuperArray final1 = new SuperArray();
+	    // Random rand = new Random();
+	    // String tester = "aaa";
 
-	    int count = 0;
-	    while (count < 1000){
-		tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
-		final1.add(tester);
-		count += 1;
+	    // int count = 0;
+	    // while (count < 1000){
+	    // 	tester = Character.toString((char)('a' + rand.nextInt(25))) + "aa";
+	    // 	final1.add(tester);
+	    // 	count += 1;
+	    // }
+	    // final1.insertionSort();
+	    // long stopTime = System.currentTimeMillis();
+	    // long elapsedTime = stopTime - startTime;
+	    // System.out.println(final1);
+	    // System.out.println("BadInsertionSort Done. It took : " + elapsedTime + " milliseconds.");
+
+
+
+	    SuperArray test2 = new SuperArray();
+	    int place = 0;
+	    while (place < 100){
+		test2.add(Integer.toString(place));
+		place += 1;
 	    }
-	    final1.insertionSort();
-	    long stopTime = System.currentTimeMillis();
-	    long elapsedTime = stopTime - startTime;
-	    System.out.println(final1);
-	    System.out.println("BadInsertionSort Done. It took : " + elapsedTime + " milliseconds.");
+	    System.out.println(test2);
+	    test2.selectionSort();
+	    System.out.println(test2);
 
-
-
-	    SuperArray test1 = new SuperArray();
-	    SuperArray test2 = new SuperArray(2);
-	    test1.add("hello");
-	    test1.add("meow");
-	    test1.add("zzz");
-	    test1.add("woof");
-	    test1.add("aaa");
-	    test1.add("zzz");
-	    test1.add("jjj");
-	    System.out.println(test1);
-	    test1.insertionSort();
-    	    test1.selectionSort();
-	    System.out.println(test1);
-    	    System.out.println(test1.find("zzz")); //expect 5;
-    	    System.out.println(test1.find("meow")); //expect 3;
-    	    System.out.println(test1.find("ccc")); //this does not exist; expect -1;
+	    // SuperArray test1 = new SuperArray(2);
+	    // test1.add("hello");
+	    // test1.add("meow");
+	    // test1.add("zzz");
+	    // test1.add("woof");
+	    // test1.add("aaa");
+	    // test1.add("zzz");
+	    // test1.add("jjj");
+	    // System.out.println(test1);
+	    // test1.insertionSort();
+    	    // test1.selectionSort();
+	    // System.out.println(test1);
+    	    // System.out.println(test1.find("zzz")); //expect 5;
+    	    // System.out.println(test1.find("meow")); //expect 3;
+    	    // System.out.println(test1.find("ccc")); //this does not exist; expect -1;
 	   
 	   
 	}
