@@ -210,7 +210,7 @@ public class SuperArray{
 	    place += 1;
 	    place2 = 0;
 	}
-	System.out.println("insertionSort complete.");
+	// System.out.println("insertionSort complete.");
     }
 	
     public int find(String target){
@@ -250,7 +250,7 @@ public class SuperArray{
 	    GoTo = place;
 	    smallestInd = place;
 	}
-	System.out.println("selectionSort complete.");
+	// System.out.println("selectionSort complete.");
     }
 		
 
@@ -288,6 +288,7 @@ public class SuperArray{
 	    }
 	    // System.out.println(test2);
 	    test2.selectionSort();
+	    System.out.println("selectionSort done.");
 	    // System.out.println(test2);
 
 	    SuperArray test1 = new SuperArray(2);
@@ -299,8 +300,9 @@ public class SuperArray{
 	    test1.add("zzz");
 	    test1.add("jjj");
 	    // System.out.println(test1);
-	    //	    test1.insertionSort();
+	    // test1.insertionSort();
       	    test1.selectionSort();
+	    System.out.println("selectionSort done.");
 	    // System.out.println(test1);
     	    System.out.println(test1.find("zzz")); //expect 5;
     	    System.out.println(test1.find("meow")); //expect 3;
