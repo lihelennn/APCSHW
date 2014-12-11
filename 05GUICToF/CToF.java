@@ -17,7 +17,7 @@ public class CToF extends JFrame implements ActionListener{
     public CToF(){
 
 	this.setTitle("Conversions to Celsius / Fahrenheit");
-	this.setSize(600,400);
+	this.setSize(800,200);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     
@@ -25,7 +25,7 @@ public class CToF extends JFrame implements ActionListener{
 	pane.setLayout(new GridLayout(2,1));
 
 	l1 = new JLabel("Enter the temperature you want to convert");
-	t1 = new JTextField(12);
+	t1 = new JTextField(8);
 	answer = new JTextField(12);
 	CToF = new JButton("Convert me to Fahrenheit!");
 	FToC = new JButton("Convert me to Celsius!");
@@ -41,49 +41,49 @@ public class CToF extends JFrame implements ActionListener{
 	
 
 	Container ask = new Container();
+	ask.setLayout(new FlowLayout());
 	ask.add(l1);
 	ask.add(t1);
 	ask.add(CToF);
 	ask.add(FToC);
-	ask.add(b1);
       
 
-	Container answer = new Container();
+	Container answers = new Container();
 	answer.setLayout(new FlowLayout());
 	ask.add(answerDisplay);
 	ask.add(answer);
+
+	pane.add(ask);
+	pane.add(answers);
     }
 
     public void actionPerformed(ActionEvent e) throws NumberFormatException{
 	String action = e.getActionCommand();
 	try{
 	    String s = t1.getText();
-	    int temperature = Integer.parseInt(s);
+	    Double temperature = Double.parseDouble(s);
+	    System.out.println(temperature);
 	    if (action.equals("convertToF")){
-	        temperature = ((9 / 5) * temperature) + 32;
+	        temperature = ((9.0 / 5) * temperature) + 32;
+		System.out.println(temperature);
 	    }else{
 		if (action.equals("convertToC")){
-		    temperature = (temperature - 32) * (5 / 9);
+		    temperature = (temperature - 32) * (5.0 / 9);
 		}
 	    }
-	    s = Integer.toString(temperature);
+	    s = Double.toString(temperature);
 	   answer.setText(s);
 	}catch(NumberFormatException c){
 	    System.out.println("Input a number please!");
+	    answer.setText("Input a number please!");
 	}
     }
-
-
-
-
 
 
     public static void main(String[] args){
 	CToF g = new CToF();
 	g.setVisible(true);
     }
-
-
 
 
 }
