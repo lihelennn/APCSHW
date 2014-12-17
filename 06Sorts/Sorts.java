@@ -30,40 +30,68 @@ public class Sorts{
 	    }
 	    swapped = c[place];
 	    c[place] = c[smallestInd];
+	    c[smallestInd] = swapped;
 	    place += 1;
 	    GoTo = place;
 	    smallestInd = place;
 	}
-	// System.out.println("selectionSort complete.");
+	// int place3 = 0;
+	// String answer = "[";
+	// while (place3 < c.length){
+	//     answer += ("" + c[place3] + " ");
+	//     place3 += 1;
+	    
+	// }
+	// answer += "]";
+	// System.out.println(answer);
     }
 
-    // public static void insertion(int[] c){
-    // 	int place = 1;
-    // 	int place2 = 0;
-    // 	int old = 0;
-    // 	int orig = 0;
-    // 	while (place < c.length){
-    // 	    old = c[place];
-    // 	    //	    System.out.println(this);
-    // 	    if (c[place - 1] - c[place] >= 0){
-    // 		while (place2 >= 0){
-    // 		    if (c[place] - c[place2] <= 0){
-    // 			while (place2 <= place){
-    // 			    old = set(place2 , old);
-    // 			    place2 += 1;
-    // 			}
-    // 			place2 = -10;
-    //   		    }	
-    // 		    place2 += 1;	    
-    // 		}
-    // 	    }
-    // 	    place += 1;
-    // 	    place2 = place - 1;
-    // 	}
-    // 	// System.out.println("insertionSort complete.");
-    // }
+    public static void insertion(int[] c){
+    	int place = 1;
+	int origPlace = 1;
+    	int place2 = 0;
+    	int old = 0;
+    	int orig = 0;
+    	while (place < c.length){
+    	    // old = c[place];
+ 	    //	    System.out.println(this);
+    	    if (c[place - 1] - c[place] >= 0){
+		orig = c[place];
+    		while (place2 >= 0){
+		    System.out.println(orig);
+    		    if (orig - c[place2] <= 0){
+			c[place] = c[place2];
+			if (place2 == 0){
+			    c[place2] = orig;		
+			}
+		    }else{
+			c[place] = orig;
+			place2 = -1;		   
+		    }
+		    place -= 1;
+		    place2 -= 1;
+		}
+	    }
+	    orig = 0;
+	    origPlace += 1;
+	    place = origPlace;
+	    place2 = place - 1;
+	}
+	// int place3 = 0;
+	// String answer = "[";
+	// while (place3 < c.length){
+	//     answer += ("" + c[place3] + " ");
+	//     place3 += 1;
+	    
+	// }
+	// answer += "]";
+	// System.out.println(answer);
+    }
+
+	        
 
     public static void bubble(int[] c){
+	int count = 0; // count if no swaps the time before
 	int place = 0;
 	int place2 = 0;
 	int store = 0;
@@ -73,21 +101,26 @@ public class Sorts{
 		    store = c[place2];
 		    c[place2] = c[place2 + 1];
 		    c[place2 + 1] = store;
+		    count += 1;
 		}
 		place2 += 1;
 	    }
+	    if (count == 0){
+		break;
+	    }
+	    count = 0;
 	    place2 = 0;
 	    place += 1;
 	}
-	int place3 = 0;
-	String answer = "[";
-	while (place3 < c.length){
-	    answer += ("" + c[place3] + " ");
-	    place3 += 1;
+	// int place3 = 0;
+	// String answer = "[";
+	// while (place3 < c.length){
+	//     answer += ("" + c[place3] + " ");
+	//     place3 += 1;
 	    
-	}
-	answer += "]";
-	System.out.println(answer);
+	// }
+	// answer += "]";
+	// System.out.println(answer);
     }
 
 
@@ -99,8 +132,19 @@ public class Sorts{
 	    tester[place] = rand.nextInt(100);
 	    place += 1;
 	}
+	int place3 = 0;
+	String answer = "[";
+	while (place3 < tester.length){
+	    answer += ("" + tester[place3] + " ");
+	    place3 += 1;
+	    
+	}
+	answer += "]";
+	// System.out.println(answer);
 
-	bubble(tester);
+	// bubble(tester);
+	// selection(tester);
+	// insertion(tester);
 
     }
 
