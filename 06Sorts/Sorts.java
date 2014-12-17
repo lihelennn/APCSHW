@@ -124,28 +124,28 @@ public class Sorts{
     }
 
 
-    public static void main(String[]args){
-	int[]tester = new int[10];
-	int place = 0;
-	Random rand = new Random();
-	while (place < tester.length){
-	    tester[place] = rand.nextInt(100);
-	    place += 1;
-	}
-	int place3 = 0;
-	String answer = "[";
-	while (place3 < tester.length){
-	    answer += ("" + tester[place3] + " ");
-	    place3 += 1;
+    // public static void main(String[]args){
+    // 	int[]tester = new int[10];
+    // 	int place = 0;
+    // 	Random rand = new Random();
+    // 	while (place < tester.length){
+    // 	    tester[place] = rand.nextInt(100);
+    // 	    place += 1;
+    // 	}
+    // 	int place3 = 0;
+    // 	String answer = "[";
+    // 	while (place3 < tester.length){
+    // 	    answer += ("" + tester[place3] + " ");
+    // 	    place3 += 1;
 	    
-	}
-	answer += "]";
+    // 	}
+    // 	answer += "]";
 	// System.out.println(answer);
 
 	// bubble(tester);
 	// selection(tester);
 	// insertion(tester);
 
-    }
+    // }
 
 }
