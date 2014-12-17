@@ -58,7 +58,7 @@ public class Sorts{
     	    if (c[place - 1] - c[place] >= 0){
 		orig = c[place];
     		while (place2 >= 0){
-		    System.out.println(orig);
+		    // System.out.println(orig);
     		    if (orig - c[place2] <= 0){
 			c[place] = c[place2];
 			if (place2 == 0){
