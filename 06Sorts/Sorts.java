@@ -123,6 +123,17 @@ public class Sorts{
 	// System.out.println(answer);
     }
 
+    public static void radix(int[] c){
+	ArrayList<ArrayList<Integer>> bucket = new ArrayList<ArrayList<Integer>>();
+	){
+	
+
+
+
+
+
+    }
+
 
     // public static void main(String[]args){
     // 	int[]tester = new int[10];
@@ -140,11 +151,11 @@ public class Sorts{
 	    
     // 	}
     // 	answer += "]";
-	// System.out.println(answer);
+    // System.out.println(answer);
 
-	// bubble(tester);
-	// selection(tester);
-	// insertion(tester);
+    // bubble(tester);
+    // selection(tester);
+    // insertion(tester);
 
     // }
 
