@@ -130,39 +130,75 @@ public class Sorts{
 	int bucketPlaceInner = 0;
 	int digit = 1;
 	int digitSave = digit;
-	while (place < c.length){
+	int number = 0;
+	int largestBeg = 0;
+	int mostGen = 0;
+	while (mostGen < c.length - 1){
+	    if ((c[mostGen] / (Math.pow(10, digit - 1))) != 0){ 
+		while (place < c.length){ // add to buckets
+		    // while (digit > 1){
+		    //     number = c[place] / 10;
+		    // 	digit -= 1;
+		    // }
 
-	
-
-
-
-
-
+		    number = ((int)((c[place]) / (Math.pow(10, digit - 1))) % 10);
+		    bucket.add.add(number, c[place]);
+		}
+		place = 0;
+		while (bucket.get(bucketPlace) != null && bucketPlace < bucket.size()){ // add back to int[]c
+		    while ((bucket.get(bucketPlace)).get(bucketPlaceInner) != null && bucketPlaceInner < bucket.get(bucketPlace).size()){
+			c[place] =(bucket.get(bucketPlace)).get(bucketPlaceInner);
+			bucketPlaceInner += 1;
+			place += 1;
+		    }
+		    bucketPlace += 1;
+		}
+		place = 0;
+		digitSave += 1;
+		digit = digitSave;
+		bucketPlace = 0;
+		bucketPlaceInner = 0;
+		bucket.clear();
+	    }
+	    mostGen += 1;
+	}
     }
 
 
-    // public static void main(String[]args){
-    // 	int[]tester = new int[10];
-    // 	int place = 0;
-    // 	Random rand = new Random();
-    // 	while (place < tester.length){
-    // 	    tester[place] = rand.nextInt(100);
-    // 	    place += 1;
-    // 	}
-    // 	int place3 = 0;
-    // 	String answer = "[";
-    // 	while (place3 < tester.length){
-    // 	    answer += ("" + tester[place3] + " ");
-    // 	    place3 += 1;
+
+
+
+
+
+
+
+
+
+
+
+    public static void main(String[]args){
+	int[]tester = new int[10];
+	int place = 0;
+	Random rand = new Random();
+	while (place < tester.length){
+	    tester[place] = rand.nextInt(100);
+	    place += 1;
+	}
+	int place3 = 0;
+	String answer = "[";
+	while (place3 < tester.length){
+	    answer += ("" + tester[place3] + " ");
+	    place3 += 1;
 	    
-    // 	}
-    // 	answer += "]";
-    // System.out.println(answer);
+	}
+	answer += "]";
+	System.out.println(answer);
 
-    // bubble(tester);
-    // selection(tester);
-    // insertion(tester);
+	radix(tester);
+	// bubble(tester);
+	// selection(tester);
+	// insertion(tester);
 
-    // }
+    }
 
 }
