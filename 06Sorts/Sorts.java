@@ -125,7 +125,13 @@ public class Sorts{
 
     public static void radix(int[] c){
 	ArrayList<ArrayList<Integer>> bucket = new ArrayList<ArrayList<Integer>>();
-	){
+	int place = 0;
+	int bucketPlace = 0;
+	int bucketPlaceInner = 0;
+	int digit = 1;
+	int digitSave = digit;
+	while (place < c.length){
+
 	
 
 
