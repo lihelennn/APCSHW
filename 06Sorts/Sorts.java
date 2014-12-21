@@ -133,7 +133,18 @@ public class Sorts{
 	int number = 0;
 	int largestBeg = 0;
 	int mostGen = 0;
+	int init = 0;
+	ArrayList<Integer> initList = new ArrayList<Integer>();
+
 	while (mostGen < c.length - 1){
+	    initList.clear();
+	    init = 0;
+	    initList.add(0);
+	    while (init < 10){
+		bucket.add(init, initList);
+		init += 1;
+	    }
+
 	    if ((c[mostGen] / (Math.pow(10, digit - 1))) != 0){ 
 		while (place < c.length){ // add to buckets
 		    // while (digit > 1){
@@ -142,12 +153,19 @@ public class Sorts{
 		    // }
 
 		    number = ((int)((c[place]) / (Math.pow(10, digit - 1))) % 10);
-		    bucket.add.add(number, c[place]);
-		}
+		    System.out.println(number);
+		    // System.out.println(number);
+		    initList.clear();
+		    initList.add(c[place]);
+		    bucket.add(number, initList);
+		    place += 1;
+		    initList.clear();
+		}   	       
 		place = 0;
-		while (bucket.get(bucketPlace) != null && bucketPlace < bucket.size()){ // add back to int[]c
-		    while ((bucket.get(bucketPlace)).get(bucketPlaceInner) != null && bucketPlaceInner < bucket.get(bucketPlace).size()){
-			c[place] =(bucket.get(bucketPlace)).get(bucketPlaceInner);
+		while (bucketPlace < bucket.size() && bucket.get(bucketPlace) != null){ // add back to int[]c
+			initList = bucket.get(bucketPlace);
+		    while (place < c.length && bucketPlaceInner < bucket.get(bucketPlace).size()){
+			c[place] = initList.get(bucketPlaceInner);
 			bucketPlaceInner += 1;
 			place += 1;
 		    }
@@ -161,6 +179,15 @@ public class Sorts{
 		bucket.clear();
 	    }
 	    mostGen += 1;
+	    int place3 = 0;
+	    String answer = "[";
+	    while (place3 < c.length){
+		answer += ("" + c[place3] + " ");
+		place3 += 1;
+	    
+	    }
+	    answer += "]";
+	    System.out.println(answer);
 	}
     }
 
@@ -198,6 +225,15 @@ public class Sorts{
 	// bubble(tester);
 	// selection(tester);
 	// insertion(tester);
+	answer = "[";
+	place3 = 0;
+	while (place3 < tester.length){
+	    answer += ("" + tester[place3] + " ");
+	    place3 += 1;
+	    
+	}
+	answer += "]";
+	System.out.println(answer);
 
     }
 
