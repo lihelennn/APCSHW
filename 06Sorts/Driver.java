@@ -5,8 +5,9 @@ public class Driver{
     public static void main(String[]args){
 	int[] tester1 = new int[100000];
 	int[] tester2 = new int[100000];
-	int[] tester3  = new int[100000];
-	int [] tester4 = new int[100000];
+	int[] tester3 = new int[100000];
+	int[] tester4 = new int[100000];
+	int[] tester5 = new int[100000];
 
 	int place = 0;
 	Random rand = new Random();
@@ -15,6 +16,7 @@ public class Driver{
 	    tester2[place] = rand.nextInt(Integer.MAX_VALUE);	   
 	    tester3[place] = rand.nextInt(Integer.MAX_VALUE);
 	    tester4[place] = rand.nextInt(Integer.MAX_VALUE);
+	    tester5[place] = rand.nextInt(Integer.MAX_VALUE);
 	    place += 1;
 	}
 
@@ -42,5 +44,11 @@ public class Driver{
         Arrays.sort(tester4);
 	endTime = System.currentTimeMillis();
 	System.out.println("Arrays.sort built-in: " + (endTime - startTime));
+
+	startTime = System.currentTimeMillis();
+	Sorts.radix(tester5);
+	endTime = System.currentTimeMillis();
+	System.out.println("radix: " + (endTime - startTime));
+
     }
 }
