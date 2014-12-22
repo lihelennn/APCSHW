@@ -127,7 +127,7 @@ public class Sorts{
 	ArrayList<ArrayList<Integer>> bucket = new ArrayList<ArrayList<Integer>>();
 	int place = 0;
 	int bucketPlace = 0;
-	int bucketPlaceInner = 0;
+	int bucketPlaceInner = 1;
 	int digit = 1;
 	int digitSave = digit;
 	int number = 0;
@@ -136,7 +136,7 @@ public class Sorts{
 	int init = 0;
 	ArrayList<Integer> initList = new ArrayList<Integer>();
 
-	while (mostGen < c.length - 1){
+	while (mostGen < c.length){
 	    initList.clear();
 	    init = 0;
 	    initList.add(0);
@@ -144,7 +144,7 @@ public class Sorts{
 		bucket.add(init, initList);
 		init += 1;
 	    }
-
+	    System.out.println("initial" + bucket);
 	    if ((c[mostGen] / (Math.pow(10, digit - 1))) != 0){ 
 		while (place < c.length){ // add to buckets
 		    // while (digit > 1){
@@ -154,40 +154,54 @@ public class Sorts{
 
 		    number = ((int)((c[place]) / (Math.pow(10, digit - 1))) % 10);
 		    System.out.println(number);
-		    // System.out.println(number);
 		    initList.clear();
+		    initList = bucket.get(number);
+		    // System.out.println(bucket.get(number));
+		    System.out.println(initList);
+		    // System.out.println(bucket);
 		    initList.add(c[place]);
 		    bucket.add(number, initList);
+		    System.out.println("" + number + bucket.get(number));
 		    place += 1;
-		    initList.clear();
-		}   	       
+		}   	     
 		place = 0;
-		while (bucketPlace < bucket.size() && bucket.get(bucketPlace) != null){ // add back to int[]c
-			initList = bucket.get(bucketPlace);
+        	while (bucketPlace < bucket.size() && bucket.get(bucketPlace) != null){ // add back to int[]c
+		    initList.clear();
+		    initList = bucket.get(bucketPlace);
 		    while (place < c.length && bucketPlaceInner < bucket.get(bucketPlace).size()){
 			c[place] = initList.get(bucketPlaceInner);
 			bucketPlaceInner += 1;
 			place += 1;
+			// int place3 = 0;
+			// String answer2 = "[";	   
+			// while (place3 < c.length){
+			//     answer2 += (c[place3] + " ");
+			//     place3 += 1;
+	    
+			// }
+			// answer2 += "]";
+			// System.out.println(answer2);
 		    }
+		    bucketPlaceInner = 1;
 		    bucketPlace += 1;
 		}
 		place = 0;
 		digitSave += 1;
 		digit = digitSave;
 		bucketPlace = 0;
-		bucketPlaceInner = 0;
 		bucket.clear();
 	    }
 	    mostGen += 1;
-	    int place3 = 0;
-	    String answer = "[";
-	    while (place3 < c.length){
-		answer += ("" + c[place3] + " ");
-		place3 += 1;
+	    // int place3 = 0;
+	    // String answer = "[";	   
+	    // while (place3 < c.length){
+	    // 	answer += ("" + c[place3] + " ");
+	    // 	place3 += 1;
 	    
-	    }
-	    answer += "]";
-	    System.out.println(answer);
+	    // }
+	    // answer += "]";
+	    // System.out.println(answer);
+
 	}
     }
 
@@ -228,7 +242,7 @@ public class Sorts{
 	answer = "[";
 	place3 = 0;
 	while (place3 < tester.length){
-	    answer += ("" + tester[place3] + " ");
+	    answer += (tester[place3] + " ");
 	    place3 += 1;
 	    
 	}
